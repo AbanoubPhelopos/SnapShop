@@ -2,29 +2,31 @@
 {
     public class ProductController(IProductRepository productRepository) : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ViewBag.Categories = productRepository.GetCategories().Select(c => new SelectListItem
-            {
-                Value = c.Id.ToString(),
-                Text = c.Name
-            }).ToList();
+            // Load categories asynchronously
+            ViewBag.Categories = (await Task.FromResult(productRepository.GetCategories()))
+                .Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Name
+                }).ToList();
 
+            // Get products asynchronously
             List<Product> products = productRepository.GetProducts().ToList();
             return View(products);
         }
 
         [HttpPost]
-        public IActionResult Create([FromForm] Product product, IFormFile image)
+        public async Task<IActionResult> Create([FromForm] Product product, IFormFile image)
         {
             try
             {
-                // Remove the duplicate name check
-                if (productRepository.IsDuplicateBarcode(product.Barcode))
-                {
-                    return Json(new { success = false, message = "The barcode already exists. Please choose a different barcode." });
-                }
-                productRepository.InsertProduct(product, image);
+                // Generate a new GUID for the barcode
+                product.Barcode = Guid.NewGuid().ToString().Substring(0, 6);
+
+                // Insert the product asynchronously
+                await productRepository.InsertProductAsync(product, image);
                 return Json(new { success = true, message = "Record created successfully!" });
             }
             catch (Exception ex)
@@ -33,9 +35,10 @@
             }
         }
 
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            Product? product = productRepository.GetProduct(id);
+            // Fetch product asynchronously
+            Product? product = await productRepository.GetProductAsync(id);
             if (product == null)
             {
                 return NotFound();
@@ -44,17 +47,12 @@
         }
 
         [HttpPost]
-        public IActionResult Edit([FromForm] Product product, IFormFile image)
+        public async Task<IActionResult> Edit([FromForm] Product product, IFormFile image)
         {
             try
             {
-                // Remove the duplicate name check
-                if (productRepository.IsDuplicateBarcode(product.Barcode, product.Id))
-                {
-                    return Json(new { success = false, message = "The barcode already exists. Please choose a different barcode." });
-                }
-
-                productRepository.UpdateProduct(product, image);
+                // Update the product asynchronously
+                await productRepository.UpdateProductAsync(product, image);
                 return Json(new { success = true, message = "Record edited successfully!" });
             }
             catch (Exception ex)
@@ -63,18 +61,18 @@
             }
         }
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                productRepository.DeleteProduct(id);
+                // Delete product asynchronously
+                await productRepository.DeleteProductAsync(id);
                 TempData["Toast"] = "Toast('Success','Record deleted successfully', 'success')";
             }
             catch (Exception ex)
             {
                 TempData["Toast"] = $"Toast('Error','{ex.Message}', 'error')";
             }
-
             return RedirectToAction("Index");
         }
     }

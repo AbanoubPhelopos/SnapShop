@@ -8,7 +8,12 @@ namespace SnapShop.Core.Repositories
     {
         public IEnumerable<Product> GetProducts()
         {
-            return context.Products.Include(p => p.Category).ToList() ?? new List<Product>();
+            return context.Products.Include(p => p.Category).ToList();
+        }
+
+        public async Task<Product?> GetProductAsync(int id)
+        {
+            return await context.Products.FindAsync(id);
         }
 
         public IEnumerable<Category?> GetCategories()
@@ -16,87 +21,95 @@ namespace SnapShop.Core.Repositories
             return context.Categories;
         }
 
-        public Product? GetProduct(int id)
-        {
-            return context.Products.Find(id);
-        }
-
-        public void InsertProduct(Product product, IFormFile image)
+        public async Task InsertProductAsync(Product product, IFormFile image)
         {
             if (image != null && image.Length > 0)
             {
-                if (image.Length > 500 * 1024)
-                {
-                    throw new Exception("Image size exceeds 500 KB.");
-                }
-                string fileName = $"{DateTime.Now.ToString("yyMMddHHmmss")}_{Path.GetFileName(image.FileName)}";
-                var filePath = Path.Combine(webHostEnvironment.WebRootPath, "Images", fileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    image.CopyTo(stream);
-                }
-                product.Image = fileName;
+                product.Image = await SaveImageAsync(image);
             }
 
+            product.Barcode = GenerateUniqueBarcode();
             context.Products.Add(product);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public void UpdateProduct(Product product, IFormFile image)
+        public async Task UpdateProductAsync(Product product, IFormFile image)
         {
-            Product? existingProduct = context.Products.Find(product.Id);
+            var existingProduct = await context.Products.FindAsync(product.Id);
+            if (existingProduct == null)
+                throw new Exception("Product not found.");
 
-            if (image == null)
+            if (image != null && image.Length > 0)
             {
-                product.Image = existingProduct.Image;
+                if (!string.IsNullOrEmpty(existingProduct.Image))
+                {
+                    DeleteExistingImage(existingProduct.Image);
+                }
+
+                product.Image = await SaveImageAsync(image);
             }
             else
             {
-                if (image.Length > 500 * 1024)
-                {
-                    throw new Exception("Image size exceeds 500 KB.");
-                }
-
-                if (!string.IsNullOrEmpty(existingProduct.Image))
-                {
-                    string prevFilePath = Path.Combine(webHostEnvironment.WebRootPath, "images", existingProduct.Image);
-                    if (File.Exists(prevFilePath))
-                    {
-                        File.Delete(prevFilePath);
-                    }
-                }
-
-                string fileName = $"{DateTime.Now.ToString("yyMMddHHmmss")}_{Path.GetFileName(image.FileName)}";
-                var filePath = Path.Combine(webHostEnvironment.WebRootPath, "images", fileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    image.CopyTo(stream);
-                }
-                product.Image = fileName;
+                product.Image = existingProduct.Image;
             }
+
             context.Entry(existingProduct).CurrentValues.SetValues(product);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public void DeleteProduct(int id)
+        public async Task DeleteProductAsync(int id)
         {
-            Product? product = context.Products.Find(id);
+            var product = await context.Products.FindAsync(id);
             if (product != null)
             {
+                if (!string.IsNullOrEmpty(product.Image))
+                {
+                    DeleteExistingImage(product.Image);
+                }
+
                 context.Products.Remove(product);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
-        public bool IsDuplicateProductName(string productName, int? productId = null)
+
+        // Helper method to generate a unique 6-character barcode
+        private string GenerateUniqueBarcode()
         {
-            return context.Products
-                .Any(p => p.Name == productName && (!productId.HasValue || p.Id != productId.Value));
+            return Guid.NewGuid().ToString("N").Substring(0, 6).ToUpper();
         }
 
-        public bool IsDuplicateBarcode(string barcode, int? productId = null)
+        // Helper method to save images to the file system
+        private async Task<string> SaveImageAsync(IFormFile image)
         {
-            return context.Products
-                .Any(p => p.Barcode == barcode && (!productId.HasValue || p.Id != productId.Value));
+            if (image.Length > 500 * 1024) // 500 KB size limit
+            {
+                throw new Exception("Image size exceeds 500 KB.");
+            }
+
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(image.FileName)}";
+            var filePath = Path.Combine(webHostEnvironment.WebRootPath, "Images/Products", fileName);
+
+            if (!Directory.Exists(Path.Combine(webHostEnvironment.WebRootPath, "Images/Products")))
+            {
+                Directory.CreateDirectory(Path.Combine(webHostEnvironment.WebRootPath, "Images/Products"));
+            }
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await image.CopyToAsync(stream);
+            }
+
+            return fileName;
+        }
+
+        // Helper method to delete existing images
+        private void DeleteExistingImage(string imageName)
+        {
+            var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "Images/Products", imageName);
+            if (File.Exists(imagePath))
+            {
+                File.Delete(imagePath);
+            }
         }
     }
 }

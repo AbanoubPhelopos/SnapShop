@@ -240,7 +240,7 @@
         $(document).ready(function () {
             @if (TempData["Toast"] != null)
             {
-                @Html.Raw(TempData["Toast"])
+            @Html.Raw(TempData["Toast"])
             }
 
             $('.show-image').click(function (e) {
@@ -253,9 +253,18 @@
             // Search functionality
             $('.txtSearch').on('input', function () {
                 let searchValue = $(this).val().toLowerCase();
-                $('#protbody tr').filter(function () {
-                    $(this).toggle($(this).find('td').eq(1).text().toLowerCase().indexOf(searchValue) > -1 ||
-                        $(this).find('td').eq(5).text().toLowerCase().indexOf(searchValue) > -1); // Search by Name and Barcode
+
+                // Iterate through each row in the table
+                $('#protbody tr').each(function () {
+                    let productName = $(this).find('td:nth-child(2)').text().toLowerCase();
+                    let barcode = $(this).find('td:nth-child(6)').text().toLowerCase();
+
+                    // Check if the search value matches the product name or barcode
+                    if (productName.includes(searchValue) || barcode.includes(searchValue)) {
+                        $(this).show(); 
+                    } else {
+                        $(this).hide();
+                    }
                 });
             });
         });

@@ -2,10 +2,10 @@
 {
     public interface ICategoryRepository
     {
-        IEnumerable<Category> GetCategories();
-        Category? GetCategory(int id);
-        void InsertCategory(Category? category);
-        void UpdateCategory(Category? category);
-        void DeleteCategory(int id);
+        List<Category?> GetCategories();
+        Task<Category?> GetCategoryAsync(int id);
+        Task InsertCategoryAsync(Category category, IFormFile? image);
+        Task UpdateCategoryAsync(Category category, IFormFile? image);
+        Task DeleteCategoryAsync(int id);
     }
 }

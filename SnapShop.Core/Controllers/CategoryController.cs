@@ -1,38 +1,45 @@
 ﻿namespace SnapShop.Core.Controllers
 {
-    public class CategoryController(ICategoryRepository categoryRepository) : Controller
+    public class CategoryController : Controller
     {
+        private readonly ICategoryRepository categoryRepository;
+
+        public CategoryController(ICategoryRepository categoryRepository)
+        {
+            this.categoryRepository = categoryRepository;
+        }
+
         public IActionResult Index()
         {
-            List<Category> categories = categoryRepository.GetCategories().ToList();
+            var categories = categoryRepository.GetCategories().ToList();
             return View(categories);
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Category category)
+        public async Task<IActionResult> Create([FromForm] Category category, IFormFile? image)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    categoryRepository.InsertCategory(category);
+                    await categoryRepository.InsertCategoryAsync(category, image);
                     return Json(new { success = true, message = "Record created successfully!" });
                 }
                 else
                 {
                     var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
-                    return Json(new { success = false, message = "Validation failed.", errors = errors });
+                    return Json(new { success = false, message = "Validation failed.", errors });
                 }
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                return Json(new { success = false, message = "An error occurred: " + ex.Message });
             }
         }
 
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            Category? category = categoryRepository.GetCategory(id);
+            var category = await Task.FromResult(categoryRepository.GetCategoryAsync(id));
             if (category == null)
             {
                 return NotFound();
@@ -41,33 +48,33 @@
         }
 
         [HttpPost]
-        public IActionResult Edit([FromBody] Category category)
+        public async Task<IActionResult> Edit([FromForm] Category category, IFormFile? image)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    categoryRepository.UpdateCategory(category);
+                    await categoryRepository.UpdateCategoryAsync(category, image);
                     return Json(new { success = true, message = "Record edited successfully!" });
                 }
                 else
                 {
                     var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
-                    return Json(new { success = false, message = "Validation failed.", errors = errors });
+                    return Json(new { success = false, message = "Validation failed.", errors });
                 }
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                return Json(new { success = false, message = "An error occurred: " + ex.Message });
             }
-
         }
-        
-        public IActionResult Delete(int id)
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                categoryRepository.DeleteCategory(id);
+                await categoryRepository.DeleteCategoryAsync(id);
                 TempData["Toast"] = "Toast('Success','Record deleted successfully', 'success')";
             }
             catch (Exception ex)
