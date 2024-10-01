@@ -1,75 +1,74 @@
-﻿@using SnapShop.Core.Models
-@model List<Category>
+﻿@model List<Category>
 
 @{
     ViewData["Title"] = "Categories";
 }
 
 <div class="me-auto">
-    <p><a href="#" role="button" data-bs-toggle="modal" class="btn btn-primary" data-bs-target="#createCategoryModal">Add New Category</a></p>
+    <p><a href="#" role="button" data-bs-toggle="modal" class="btn btn-outline-primary" data-bs-target="#createCategoryModal">Add New Category</a></p>
 </div>
 
 @if (Model.Count == 0)
 {
-<div class="alert alert-warning text-center" role="alert">
-    There are no categories !!
-</div>
+    <div class="alert alert-warning text-center" role="alert">
+        There are no categories !!
+    </div>
 }
 else
 {
     <div class="protable">
-        <table class="table table-bordered table-striped table-hover w-auto">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
+        <div class="table-responsive">
+            <div class="container my-4">
+                <!-- Category Table -->
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            <input class="txtSearch" type="text" name="txtSearch" placeholder="search by name" style="font-size: small; border: 1px solid #ced4da;"/>
+                            Name 
+                        </th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="protbody"> <!-- Added ID here -->
+                    @{
+                    int sl = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@sl</td>
+                            <td>@item.Name</td> <!-- Change from <th> to <td> -->
+                            <td>
+                                <a onclick="EditCategory('@item.Id')" class="btn btn-outline-secondary btn-sm" style="cursor: pointer;">Edit <i class="bi bi-pencil-square"></i></a>
+                                <a onclick="DeleteCategory('@item.Id')" class="btn btn-outline-danger btn-sm ms-2" style="cursor: pointer;">Delete <i class="bi bi-trash"></i></a>
+                            </td>
+                        </tr>
+                        sl++;
+                    }
+                    }
+                    </tbody>
+                </table>
 
-            <tbody id="protbody">
-            @{
-                int sl = 1;
-            }
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@sl</td>
-                    <td>@item.Name</td>
-                    <td>
-                        @if (item.Image != null)
-                        {
-                            <img src="/Images/Categories/@item.Image" alt="Category Image" style="width:50px; height:50px; object-fit:cover;" />
-                        }
-                        else
-                        {
-                            <span>No Image</span>
-                        }
-                    </td>
-                    <td>
-                        <a onclick="EditCategory('@item.Id')" style="cursor: pointer;"><i class="bi bi-pencil-square text-warning me-2"></i></a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete this item?');"><i class="bi bi-trash text-danger"></i></a>
-                    </td>
-                </tr>
-                sl++;
-            }
-            </tbody>
-        </table>
+            </div>
+        </div>
     </div>
 }
-
 
 <!-- Create Category Modal -->
 <div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5">Add Category</h2>
+                <button type="button" class="btn-outline-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
             <div class="modal-body">
                 <input id="txtName1" class="form-control form-control-sm" placeholder="Enter Name">
-                <input id="fileImage1" type="file" class="form-control form-control-sm mt-2" accept="image/*" />
+                <input id="fileImage1" type="file" class="form-control form-control-sm mt-2" accept="image/*"/>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-sm btn-primary" onclick="AddCategory()">Save</button>
+                <button type="submit" class="btn btn-sm btn-outline-primary" onclick="AddCategory()">Save</button>
             </div>
         </div>
     </div>
@@ -80,8 +79,8 @@ else
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title fs-5" id="editCategoryModalLabel">Edit Category</h2>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h2 class="modal-title fs-5">Edit Category</h2>
+                <button type="button" class="btn-outline-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <input id="cId" type="hidden" />
@@ -89,7 +88,7 @@ else
                 <input id="fileImage2" type="file" class="form-control form-control-sm mt-2" accept="image/*" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-primary" onclick="UpdateCategory()">Save</button>
+                <button type="button" class="btn btn-sm btn-outline-primary" onclick="UpdateCategory()">Save</button>
             </div>
         </div>
     </div>
@@ -97,20 +96,24 @@ else
 
 @section Scripts {
     <script type="text/javascript">
-        $(document).ready(function () {
-            @if (TempData["Toast"] != null)
-            {
-                @Html.Raw(TempData["Toast"])
-            }
+        $('.txtSearch').on('input', function () {
+            let searchValue = $(this).val().toLowerCase();
+
+            // Iterate through each row in the table
+            $('#protbody tr').each(function () {
+                // Adjust the index if necessary to match your table structure
+                let categoryName = $(this).find('td:nth-child(2)').text().toLowerCase().trim();
+
+                // Check if the search value matches the category name
+                if (categoryName.includes(searchValue)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
         });
 
-        $('.show-image').click(function (e) {
-            e.preventDefault();
-            var imageSrc = $(this).data('imagePath');
-            $('#modalImage').attr('src', '/Images/Categories' + imageSrc);
-            $('#showImageModal').modal('show');
-        });
-        
+
         function AddCategory() {
             var formData = new FormData();
             formData.append('name', $('#txtName1').val());
@@ -139,7 +142,11 @@ else
                             window.location.reload();
                         }, 1500);
                     } else {
-                        Toast('Error', result.message, 'error');
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: result.message
+                        });
                     }
                 },
                 error: function (xhr, status, error) {
@@ -198,7 +205,7 @@ else
                         });
                         setTimeout(function () {
                             window.location.reload();
-                        }, 1500);
+                        });
                     } else {
                         Swal.fire({
                             position: "center",
@@ -212,5 +219,48 @@ else
                 }
             });
         }
+        function DeleteCategory(categoryId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/Category/Delete",
+                        method: "POST",
+                        data: { id: categoryId },
+                        success: function (result) {
+                            if (result.success) {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Category has been deleted",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                setTimeout(function () {
+                                    window.location.reload();
+                                });
+                            } else {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "error",
+                                    title: result.message
+                                });
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(`Error: ${error}, Status: ${status}, Response: ${xhr.responseText}`);
+                        }
+                    });
+                }
+            });
+        }
+
     </script>
 }

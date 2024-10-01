@@ -2,100 +2,111 @@
 
 namespace SnapShop.Core.Repositories
 {
-    public class CategoryRepository(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
-        : ICategoryRepository
+    public class CategoryRepository : ICategoryRepository
     {
+        private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public CategoryRepository(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
+        {
+            _context = context;
+            _webHostEnvironment = webHostEnvironment;
+        }
+
+        // Get list of all categories
         public List<Category?> GetCategories()
         {
-            return context.Categories.ToList();
+            return _context.Categories.ToList();
         }
 
+        // Get category by ID
         public async Task<Category?> GetCategoryAsync(int id)
         {
-            return await context.Categories.FindAsync(id);
+            return await _context.Categories.FindAsync(id);
         }
 
-        public async Task UpdateCategoryAsync(Category? category, IFormFile? image)
+        // Update category and handle image update
+        public async Task UpdateCategoryAsync(Category? category, IFormFile? formFile)
         {
             if (category == null) throw new ArgumentNullException(nameof(category));
-            
-            if (image != null && image.Length > 0)
+
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+
+            // Handle image update logic
+            if (formFile != null)
             {
-                // Handle the image update
-                category.Image = await HandleImageUploadAsync(image, category.Image);
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(formFile.FileName);
+                string categoryImagePath = Path.Combine(wwwRootPath, @"Images\Categories");
+
+                // Remove the existing image if it exists
+                if (!string.IsNullOrEmpty(category.Image))
+                {
+                    var oldImagePath = Path.Combine(wwwRootPath, category.Image.Trim('\\'));
+                    if (File.Exists(oldImagePath))
+                    {
+                        File.Delete(oldImagePath);
+                    }
+                }
+
+                // Save the new image
+                using (var fileStream = new FileStream(Path.Combine(categoryImagePath, fileName), FileMode.Create))
+                {
+                    await formFile.CopyToAsync(fileStream);
+                }
+
+                // Update category with new image URL
+                category.Image = @"Images\Categories\" + fileName;
             }
 
-            context.Categories.Update(category);
-            await context.SaveChangesAsync();
+            // Update category in the database
+            _context.Categories.Update(category);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task InsertCategoryAsync(Category category, IFormFile? image)
+        // Insert new category and handle image upload
+        public async Task InsertCategoryAsync(Category category, IFormFile? formFile)
         {
-            if (image != null && image.Length > 0)
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+
+            if (formFile != null)
             {
-                category.Image = await HandleImageUploadAsync(image, null);
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(formFile.FileName);
+                string categoryImagePath = Path.Combine(wwwRootPath, @"Images\Categories");
+
+                // Save the new image
+                using (var fileStream = new FileStream(Path.Combine(categoryImagePath, fileName), FileMode.Create))
+                {
+                    await formFile.CopyToAsync(fileStream);
+                }
+
+                // Set image URL in category object
+                category.Image = @"Images\Categories\" + fileName;
             }
-            
-            await context.Categories.AddAsync(category);
-            await context.SaveChangesAsync();
+
+            // Add category to the database
+            await _context.Categories.AddAsync(category);
+            await _context.SaveChangesAsync();
         }
 
+        // Delete category and remove the associated image
         public async Task DeleteCategoryAsync(int categoryId)
         {
-            var category = await context.Categories.FindAsync(categoryId);
+            var category = await _context.Categories.FindAsync(categoryId);
             if (category != null)
             {
-                // Optionally delete the image file from the filesystem
-                DeleteExistingImage(category.Image);
-                
-                context.Categories.Remove(category);
-                await context.SaveChangesAsync();
-            }
-        }
-
-        // Helper method to handle image uploads
-        private async Task<string> HandleImageUploadAsync(IFormFile image, string? existingImage = null)
-        {
-            if (image.Length > 500 * 1024) // 500 KB size limit
-            {
-                throw new Exception("Image size exceeds 500 KB.");
-            }
-
-            string fileName = $"{Guid.NewGuid()}{Path.GetExtension(image.FileName)}";
-            var filePath = Path.Combine(webHostEnvironment.WebRootPath, "Images/Categories", fileName);
-
-            // Ensure the directory exists
-            var directoryPath = Path.GetDirectoryName(filePath);
-            if (!Directory.Exists(directoryPath))
-            {
-                Directory.CreateDirectory(directoryPath);
-            }
-
-            // Save the image file asynchronously
-           await  using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await image.CopyToAsync(stream);
-            }
-
-            // Optionally delete the existing image if it's being updated
-            if (!string.IsNullOrEmpty(existingImage))
-            {
-                DeleteExistingImage(existingImage);
-            }
-
-            return fileName;
-        }
-
-        // Helper method to delete existing images
-        private void DeleteExistingImage(string? imageName)
-        {
-            if (!string.IsNullOrEmpty(imageName))
-            {
-                var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "Images/Categories", imageName);
-                if (File.Exists(imagePath))
+                // Delete the image file if it exists
+                if (!string.IsNullOrEmpty(category.Image))
                 {
-                    File.Delete(imagePath);
+                    var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, category.Image.Trim('\\'));
+                    if (File.Exists(imagePath))
+                    {
+                        File.Delete(imagePath);
+                    }
                 }
+
+                // Remove category from the database
+                _context.Categories.Remove(category);
+                await _context.SaveChangesAsync();
             }
         }
     }
