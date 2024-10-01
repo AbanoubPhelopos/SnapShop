@@ -1,0 +1,162 @@
+﻿@using SnapShop.Core.Models
+@model List<Category>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div class="me-auto">
+    <p><a href="#" role="button" data-bs-toggle="modal" data-bs-target="#createCategoryModal">Create New</a></p>
+</div>
+
+<div class="protable">
+    <table class="table table-bordered table-striped table-hover w-auto">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody id="protbody">
+            @{
+                int sl = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@sl</td>
+                    <td>@item.Name</td>
+                    <td>
+                        <a onclick="EditCategory('@item.Id')" style="cursor: pointer;"><i class="bi bi-pencil-square text-warning me-2"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" onclick="alert('Are you sure you want to delete this item?')"><i class="bi bi-trash text-danger"></i></a>
+                    </td>
+                </tr>
+                sl++;
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="createCategoryModalLabel">Create Category</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="txtName1" class="form-control form-control-sm" placeholder="Enter Name">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" onclick="AddCategory()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="editCategoryModalLabel">Edit Category</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="cId" type="hidden" />
+                <input id="txtName2" class="form-control form-control-sm" placeholder="Enter Name">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" onclick="UpdateCategory()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+        @if (TempData["Toast"] != null)
+        {
+            @Html.Raw(TempData["Toast"])
+        }
+                });
+
+        function AddCategory() {
+            var objData = { 'Name': $('#txtName1').val() };
+
+            $.ajax({
+                url: "/Category/Create",
+                method: "Post",
+                data: JSON.stringify(objData),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    if (result.success) {
+                        $('#createCategoryModal').modal('hide');
+                        Toast('Success', result.message, 'success');
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 3000);
+                    }
+                    else {
+                        Toast('Error', result.message, 'error');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log(`Error: ${error}, Status: ${status}, Response: ${xhr.responseText}`);
+                }
+            });
+        }
+
+        function EditCategory(id) {
+            $.ajax({
+                type: "GET",
+                url: "/Category/Edit?id=" + id,
+                dataType: "json",
+                success: function (result) {
+                    //console.log(result);
+                    $('#cId').val(result.id);
+                    $('#txtName2').val(result.name);
+                    $('#editCategoryModal').modal('show');
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+        
+        function UpdateCategory() {
+            var objData = {
+                'Id': $('#cId').val(),
+                'Name': $('#txtName2').val()
+            };
+            $.ajax({
+                url: "/Category/Edit",
+                method: "POST",
+                data: JSON.stringify(objData),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    //console.log(result);
+                    if (result.success) {
+                        $('#editCategoryModal').modal('hide');
+                        Toast('Success', result.message, 'success');
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 3000);
+                    }
+                    else {
+                        Toast('Error', result.message, 'error');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+    </script>
+}

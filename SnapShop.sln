@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnapShop.Core", "SnapShop.Core\SnapShop.Core.csproj", "{97EA2654-38E1-4233-8C60-111C7E8BEFFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnapShop.Repository", "SnapShop.Repository\SnapShop.Repository.csproj", "{71D87A42-1C49-40F3-941F-81DDD0939331}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnapShop.Application", "SnapShop.Application\SnapShop.Application.csproj", "{4664862C-D1FE-4876-9C1F-31A5FF755B4D}"
 EndProject
 Global
@@ -16,10 +14,6 @@ Global
 		{97EA2654-38E1-4233-8C60-111C7E8BEFFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97EA2654-38E1-4233-8C60-111C7E8BEFFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97EA2654-38E1-4233-8C60-111C7E8BEFFA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{71D87A42-1C49-40F3-941F-81DDD0939331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71D87A42-1C49-40F3-941F-81DDD0939331}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71D87A42-1C49-40F3-941F-81DDD0939331}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71D87A42-1C49-40F3-941F-81DDD0939331}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4664862C-D1FE-4876-9C1F-31A5FF755B4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4664862C-D1FE-4876-9C1F-31A5FF755B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4664862C-D1FE-4876-9C1F-31A5FF755B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU

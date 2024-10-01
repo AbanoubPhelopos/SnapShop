@@ -1,0 +1,410 @@
+﻿@using SnapShop.Core.Models
+@model List<Product>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="d-flex">
+    <div class="me-auto">
+        <p><a href="#" role="button" data-bs-toggle="modal" data-bs-target="#addProModal">Create New</a></p>
+    </div>
+</div>
+
+<div class="protable">
+    <table class="table table-bordered table-hover w-auto">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th><input class="txtSearch" type="text" name="txtSearch" placeholder="Name or Barcode" style="font-size: small; border: 1px solid #ced4da;" /></th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Barcode</th>
+                <th>Actions</th> <!-- Added Actions header -->
+            </tr>
+        </thead>
+
+        <tbody id="protbody">
+            @{
+                int sl = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@sl</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Image))
+                        {
+                            <a href="#" class="show-image" data-image-path="@item.Image">@item.Name</a>
+                        }
+                        else
+                        {
+                            <span>@item.Name</span>
+                        }
+                    </td>
+                    <td>@item.Category?.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Price</td>
+                    <td>@item.Barcode</td>
+                    <td>@item.Quantity</td> <!-- Added Quantity -->
+                    <td>
+                        <a href="#" onclick="EditProduct(@item.Id)" class="me-2"><i class="bi bi-pencil-square text-warning fs-5"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete this?')"><i class="bi bi-trash text-danger fs-5"></i></a>
+                    </td>
+                </tr>
+                sl++;
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Add Product Modal -->
+<div class="modal fade" id="addProModal" tabindex="-1" aria-labelledby="addProModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProModalLabel">Create Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mx-3">
+                    <form id="addProductForm" method="post" enctype="multipart/form-data">
+                        <div class="row mb-2">
+                            <label for="txtName1" class="col-sm-3 col-form-label">Name</label>
+                            <div class="col-sm-9">
+                                <input id="txtName1" name="Name" class="form-control form-control-sm" required>
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="ddlCategory1" class="col-sm-3 col-form-label">Category</label>
+                            <div class="col-sm-9">
+                                <select id="ddlCategory1" name="Category" asp-items="@ViewBag.Categories" class="form-select form-select-sm" required></select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtBrand1" class="col-sm-3 col-form-label">Brand</label>
+                            <div class="col-sm-9">
+                                <input id="txtBrand1" type="text" name="Brand" class="form-control form-control-sm" required>
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtCreatedAt1" class="col-sm-3 col-form-label">Created At</label>
+                            <div class="col-sm-9">
+                                <input id="txtCreatedAt1" type="date" name="CreatedAt" class="form-control form-control-sm" required>
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtQuantity1" class="col-sm-3 col-form-label">Quantity</label>
+                            <div class="col-sm-9">
+                                <input id="txtQuantity1" type="number" name="Quantity" class="form-control form-control-sm" required>
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtImage1" class="col-sm-3 col-form-label">Image</label>
+                            <div class="col-sm-9">
+                                <input id="txtImage1" name="Image" class="form-control form-control-sm" type="file" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtDescription1" class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <textarea id="txtDescription1" name="Description" class="form-control form-control-sm"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtPrice1" class="col-sm-3 col-form-label">Price</label>
+                            <div class="col-sm-9">
+                                <input id="txtPrice1" type="number" name="Price" class="form-control form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtBarcode1" class="col-sm-3 col-form-label">Barcode</label>
+                            <div class="col-sm-9">
+                                <input id="txtBarcode1" type="text" name="Barcode" class="form-control form-control-sm" required>
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtExpireDate1" class="col-sm-3 col-form-label">Expires On</label>
+                            <div class="col-sm-9">
+                                <input id="txtExpireDate1" type="date" name="ExpireDate" class="form-control form-control-sm">
+                                <div class="invalid-feedback">This field is optional.</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" onclick="AddProduct()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Product Modal -->
+<div class="modal fade" id="editProModal" tabindex="-1" aria-labelledby="editProModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProModalLabel">Edit Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mx-3">
+                    <form id="editProductForm" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="pid" />
+                        <div class="row mb-2">
+                            <label for="txtName2" class="col-sm-3 col-form-label">Name</label>
+                            <div class="col-sm-9">
+                                <input id="txtName2" name="Name" class="form-control form-control-sm" required>
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="ddlCategory2" class="col-sm-3 col-form-label">Category</label>
+                            <div class="col-sm-9">
+                                <select id="ddlCategory2" name="Category" asp-items="@ViewBag.Categories" class="form-select form-select-sm" required></select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtBrand2" class="col-sm-3 col-form-label">Brand</label>
+                            <div class="col-sm-9">
+                                <input id="txtBrand2" type="text" name="Brand" class="form-control form-control-sm" required>
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtCreatedAt2" class="col-sm-3 col-form-label">Created At</label>
+                            <div class="col-sm-9">
+                                <input id="txtCreatedAt2" type="date" name="CreatedAt" class="form-control form-control-sm" required>
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtQuantity2" class="col-sm-3 col-form-label">Quantity</label>
+                            <div class="col-sm-9">
+                                <input id="txtQuantity2" type="number" name="Quantity" class="form-control form-control-sm" required>
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtImage2" class="col-sm-3 col-form-label">Image</label>
+                            <div class="col-sm-9">
+                                <input id="txtImage2" name="Image" class="form-control form-control-sm" type="file" />
+                                <img id="imgImage2" alt="#" width="90" height="50" style="display:none;">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtDescription2" class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <textarea id="txtDescription2" name="Description" class="form-control form-control-sm"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtPrice2" class="col-sm-3 col-form-label">Price</label>
+                            <div class="col-sm-9">
+                                <input id="txtPrice2" type="number" name="Price" class="form-control form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtBarcode2" class="col-sm-3 col-form-label">Barcode</label>
+                            <div class="col-sm-9">
+                                <input id="txtBarcode2" type="text" name="Barcode" class="form-control form-control-sm" required>
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtExpireDate2" class="col-sm-3 col-form-label">Expires On</label>
+                            <div class="col-sm-9">
+                                <input id="txtExpireDate2" type="date" name="ExpireDate" class="form-control form-control-sm">
+                                <div class="invalid-feedback">This field is optional.</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" onclick="UpdateProduct()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            @if (TempData["Toast"] != null)
+            {
+                @Html.Raw(TempData["Toast"])
+            }
+
+            $('.show-image').click(function (e) {
+                e.preventDefault();
+                var imageSrc = $(this).data('imagePath');
+                $('#modalImage').attr('src', '/Images/' + imageSrc);
+                $('#showImageModal').modal('show');
+            });
+
+            // Search functionality
+            $('.txtSearch').on('input', function () {
+                let searchValue = $(this).val().toLowerCase();
+                $('#protbody tr').filter(function () {
+                    $(this).toggle($(this).find('td').eq(1).text().toLowerCase().indexOf(searchValue) > -1 ||
+                        $(this).find('td').eq(5).text().toLowerCase().indexOf(searchValue) > -1); // Search by Name and Barcode
+                });
+            });
+        });
+
+        function validateFields(fields) {
+            let isValid = true;
+            fields.forEach(function (field) {
+                if (!$(field).val()) {
+                    $(field).addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    $(field).removeClass('is-invalid');
+                }
+            });
+            return isValid;
+        }
+
+        function AddProduct() {
+            const fieldsToValidate = ['#txtName1', '#txtBarcode1', '#txtCreatedAt1', '#txtQuantity1', '#txtBrand1'];
+            if (!validateFields(fieldsToValidate)) {
+                Toast('Error', 'Please fill in all required fields.', 'error');
+                return; // Stop execution if validation fails
+            }
+
+            var formData = new FormData();
+            formData.append('Name', $('#txtName1').val());
+            formData.append('CategoryId', $('#ddlCategory1').val());
+            formData.append('Brand', $('#txtBrand1').val()); // Added Brand
+            formData.append('CreatedAt', $('#txtCreatedAt1').val()); // Added Created At
+            formData.append('Description', $('#txtDescription1').val());
+            formData.append('Price', $('#txtPrice1').val());
+            formData.append('Barcode', $('#txtBarcode1').val());
+            formData.append('ExpireDate', $('#txtExpireDate1').val());
+            formData.append('Quantity', $('#txtQuantity1').val()); // Added Quantity
+
+            var imgInput = $('#txtImage1')[0].files[0];
+            if (imgInput) {
+                formData.append('Image', imgInput);
+            }
+
+            $.ajax({
+                url: "/Product/Create",
+                method: "Post",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    if (result.success) {
+                        $('#addProModal').modal('hide');
+                        Toast('Success', result.message, 'success');
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 3000);
+                    } else {
+                        Toast('Error', result.message, 'error');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+
+        function EditProduct(id) {
+            $.ajax({
+                type: "GET",
+                url: "/Product/Edit?id=" + id,
+                dataType: "json",
+                success: function (result) {
+                    $('#pid').val(result.id);
+                    $('#txtName2').val(result.name);
+                    $('#ddlCategory2').val(result.categoryId);
+                    $('#txtBrand2').val(result.brand); // Populate Brand field
+                    $('#txtDescription2').val(result.description);
+                    $('#txtPrice2').val(result.price);
+                    $('#txtBarcode2').val(result.barcode);
+                    $('#txtQuantity2').val(result.quantity); // Populate Quantity field
+                    $('#txtCreatedAt2').val(new Date(result.createdAt).toISOString().split('T')[0]); // Populate Created At field
+                    if (result.expireDate) {
+                        $('#txtExpireDate2').val(new Date(result.expireDate).toISOString().split('T')[0]);
+                    } else {
+                        $('#txtExpireDate2').val('');
+                    }
+
+                    if (result.image) {
+                        $('#imgImage2').attr('src', '/Images/' + result.image).show();
+                    } else {
+                        $('#imgImage2').hide();
+                    }
+                    $('#editProModal').modal('show');
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+
+        function UpdateProduct() {
+            const fieldsToValidate = ['#txtName2', '#txtBarcode2', '#txtCreatedAt2', '#txtQuantity2', '#txtBrand2'];
+            if (!validateFields(fieldsToValidate)) {
+                Toast('Error', 'Please fill in all required fields.', 'error');
+                return; // Stop execution if validation fails
+            }
+
+            var formData = new FormData();
+            formData.append('Id', $('#pid').val());
+            formData.append('Name', $('#txtName2').val());
+            formData.append('CategoryId', $('#ddlCategory2').val());
+            formData.append('Brand', $('#txtBrand2').val()); // Added Brand
+            formData.append('CreatedAt', $('#txtCreatedAt2').val()); // Added Created At
+            formData.append('Description', $('#txtDescription2').val());
+            formData.append('Price', $('#txtPrice2').val());
+            formData.append('Barcode', $('#txtBarcode2').val());
+            formData.append('ExpireDate', $('#txtExpireDate2').val());
+            formData.append('Quantity', $('#txtQuantity2').val()); // Added Quantity
+
+            var imgInput = $('#txtImage2')[0].files[0];
+            if (imgInput) {
+                formData.append('Image', imgInput);
+            }
+
+            $.ajax({
+                url: "/Product/Edit",
+                method: "POST",
+                data: formData,
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    if (result.success) {
+                        $('#editProModal').modal('hide');
+                        Toast('Success', result.message, 'success');
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000);
+                    } else {
+                        Toast('Error', result.message, 'error');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+    </script>
+}
+
+<style>
+    .bi {
+        font-size: 1.25rem;
+    }
+</style>
