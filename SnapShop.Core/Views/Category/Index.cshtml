@@ -40,7 +40,7 @@ else
                     <td>
                         @if (item.Image != null)
                         {
-                            <img src="@item.Image" alt="Category Image" style="width:50px; height:50px; object-fit:cover;" />
+                            <img src="/Images/Categories/@item.Image" alt="Category Image" style="width:50px; height:50px; object-fit:cover;" />
                         }
                         else
                         {
@@ -113,10 +113,10 @@ else
         
         function AddCategory() {
             var formData = new FormData();
-            formData.append('Name', $('#txtName1').val());
+            formData.append('name', $('#txtName1').val());
             var imageFile = $('#fileImage1')[0].files[0];
             if (imageFile) {
-                formData.append('Image', imageFile);
+                formData.append('image', imageFile);
             }
 
             $.ajax({
@@ -128,7 +128,13 @@ else
                 success: function (result) {
                     if (result.success) {
                         $('#createCategoryModal').modal('hide');
-                        Toast('Success', result.message, 'success');
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Your work has been saved",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                         setTimeout(function () {
                             window.location.reload();
                         }, 1500);
@@ -141,7 +147,7 @@ else
                 }
             });
         }
-
+        
         function EditCategory(id) {
             $.ajax({
                 type: "GET",
@@ -183,12 +189,22 @@ else
                 success: function (result) {
                     if (result.success) {
                         $('#editCategoryModal').modal('hide');
-                        Toast('Success', result.message, 'success');
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: result.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                         setTimeout(function () {
                             window.location.reload();
                         }, 1500);
                     } else {
-                        Toast('Error', result.message, 'error');
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: result.message,
+                        });
                     }
                 },
                 error: function (xhr, status, error) {

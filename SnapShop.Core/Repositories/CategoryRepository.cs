@@ -72,7 +72,7 @@ namespace SnapShop.Core.Repositories
             }
 
             // Save the image file asynchronously
-            using (var stream = new FileStream(filePath, FileMode.Create))
+           await  using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await image.CopyToAsync(stream);
             }

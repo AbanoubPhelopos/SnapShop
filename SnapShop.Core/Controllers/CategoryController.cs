@@ -1,4 +1,6 @@
-﻿namespace SnapShop.Core.Controllers
+﻿using SnapShop.Core.ViewModels.Catetories;
+
+namespace SnapShop.Core.Controllers
 {
     public class CategoryController : Controller
     {
@@ -16,13 +18,16 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm] Category category, IFormFile? image)
+        public async Task<IActionResult> Create([FromForm] CreateCategoryViewModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    await categoryRepository.InsertCategoryAsync(category, image);
+                    await categoryRepository.InsertCategoryAsync(new ()
+                    {
+                        Name = model.Name
+                    }, model.Image);
                     return Json(new { success = true, message = "Record created successfully!" });
                 }
                 else
@@ -36,10 +41,10 @@
                 return Json(new { success = false, message = "An error occurred: " + ex.Message });
             }
         }
-
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var category = await Task.FromResult(categoryRepository.GetCategoryAsync(id));
+            var category = await categoryRepository.GetCategoryAsync(id);
             if (category == null)
             {
                 return NotFound();
@@ -48,13 +53,17 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit([FromForm] Category category, IFormFile? image)
+        public async Task<IActionResult> Edit([FromForm] EditCategoryViewModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    await categoryRepository.UpdateCategoryAsync(category, image);
+                    await categoryRepository.UpdateCategoryAsync(new Category()
+                    {
+                        Id = model.Id,
+                        Name = model.Name
+                    }, model.Image);
                     return Json(new { success = true, message = "Record edited successfully!" });
                 }
                 else
@@ -69,7 +78,7 @@
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             try
