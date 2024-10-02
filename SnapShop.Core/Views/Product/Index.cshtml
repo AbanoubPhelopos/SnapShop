@@ -1,75 +1,77 @@
 ﻿@model List<Product>
 
 @{
-    ViewData["Title"] = "Home";
+ViewData["Title"] = "Home";
 }
 
 <div class="d-flex">
     <div class="me-auto">
         <p><a href="#" role="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addProModal">Add New Product</a></p>
     </div>
+    <div class="d-flex justify-content-center mb-3 position-relative">
+        <input class="txtSearch form-control form-control-sm w-auto ps-5" type="text" name="txtSearch" placeholder="Name or Barcode" />
+        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ps-2" style="font-size: 1rem; color: #6c757d;"></i>
+    </div>
+
 </div>
+
 @if (Model.Count == 0)
 {
-    <div class="alert alert-warning text-center" role="alert">
-        There are no products !!
-    </div>
+<div class="alert alert-warning text-center" role="alert">
+    There are no products !!
+</div>
 }
 else
 {
-    <div class="protable">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover w-100">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>
-                        <input class="txtSearch" type="text" name="txtSearch" placeholder="search by name" style="font-size: small; border: 1px solid #ced4da;" />
-                        Name
-                    </th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Barcode</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-
-                <tbody id="protbody">
-                @{
-                int sl = 1;
-                }
-                @foreach (var item in Model)
-                {
-                <tr>
-                    <td>@sl</td>
-                    <td>
-                        @if (!string.IsNullOrEmpty(item.Image))
-                        {
-                        <a href="#" class="show-image" data-image-path="@item.Image">@item.Name</a>
-                        }
-                        else
-                        {
-                        <span>@item.Name</span>
-                        }
-                    </td>
-                    <td>@item.Category?.Name</td>
-                    <td>@item.Price</td>
-                    <td>@item.Barcode</td>
-                    <td>
-                        <a href="#" onclick="EditProduct(@item.Id)" class="btn btn-outline-secondary">
-                            Edit <i class="bi bi-pencil-square"></i>
-                        </a>
-                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete this?')">
-                            Delete <i class="bi bi-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-                sl++;
-                }
-                </tbody>
-            </table>
-        </div>
-    </div>   
+<div class="protable">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover w-100">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Barcode</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="protbody">
+            @{
+            int sl = 1;
+            }
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@sl</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Image))
+                    {
+                    <a href="#" class="show-image" data-image-path="@item.Image">@item.Name</a>
+                    }
+                    else
+                    {
+                    <span>@item.Name</span>
+                    }
+                </td>
+                <td>@item.Category?.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Barcode</td>
+                <td>
+                    <a href="#" onclick="EditProduct(@item.Id)" class="btn btn-outline-secondary" aria-label="Edit Product">
+                        Edit <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete this?')" aria-label="Delete Product">
+                        Delete <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            sl++;
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
 }
 
 <!-- Add Product Modal -->
@@ -77,12 +79,12 @@ else
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Product</h5>
-                <button type="button" class="btn-outline-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="addProModalLabel">Add Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="mx-3">
-                    <form id="addProductForm" method="post" enctype="multipart/form-data">
+                    <form id="addProductForm" method="post" enctype="multipart/form-data" action="/Product/Add">
                         <div class="row mb-2">
                             <label for="txtName1" class="col-sm-3 col-form-label">Name</label>
                             <div class="col-sm-9">
@@ -146,12 +148,12 @@ else
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editProModalLabel">Edit Product</h5>
-                <button type="button" class="btn-outline-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="mx-3">
-                    <form id="editProductForm" method="post" enctype="multipart/form-data">
-                        <input type="hidden" id="pid" />
+                    <form id="editProductForm" method="post" enctype="multipart/form-data" action="/Product/Edit">
+                        <input type="hidden" id="pid" name="Id" />
                         <div class="row mb-2">
                             <label for="txtName2" class="col-sm-3 col-form-label">Name</label>
                             <div class="col-sm-9">
@@ -160,9 +162,9 @@ else
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <label for="ddlCategory1" class="col-sm-3 col-form-label">Category</label>
+                            <label for="ddlCategory2" class="col-sm-3 col-form-label">Category</label>
                             <div class="col-sm-9">
-                                <select id="ddlCategory1" name="Category" asp-items="@ViewBag.Categories" class="form-select form-select-sm" required>
+                                <select id="ddlCategory2" name="Category" asp-items="@ViewBag.Categories" class="form-select form-select-sm" required>
                                     <option value="" disabled selected>--Select Category--</option>
                                     @foreach (var item in ViewBag.Categories)
                                     {
@@ -210,12 +212,13 @@ else
     </div>
 </div>
 
-@section Scripts {
+@section Scripts
+{
     <script>
         $(document).ready(function () {
             @if (TempData["Toast"] != null)
             {
-            @Html.Raw(TempData["Toast"])
+                @Html.Raw(TempData["Toast"])
             }
 
             $('.show-image').click(function (e) {
@@ -232,8 +235,9 @@ else
                 // Iterate through each row in the table
                 $('#protbody tr').each(function () {
                     let productName = $(this).find('td:nth-child(2)').text().toLowerCase();
+                    let productBarcode = $(this).find('td:nth-child(5)').text().toLowerCase();
 
-                    if (productName.includes(searchValue)) {
+                    if (productName.includes(searchValue) || productBarcode.includes(searchValue)) {
                         $(this).show();
                     } else {
                         $(this).hide();
@@ -256,14 +260,25 @@ else
             return isValid;
         }
 
+        function showAlert(icon, title) {
+            Swal.fire({
+                position: "top-end",
+                icon: icon,
+                title: title,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+        function handleAjaxError(xhr, status, error) {
+            console.error("Error:", error);
+            showAlert("error", error);
+        }
+
         function AddProduct() {
-            const fieldsToValidate = ['#txtName1', '#txtQuantity1', 'ddlCategory1', 'txtImage1', 'txtPrice1'];
+            const fieldsToValidate = ['#txtName1', '#txtQuantity1', '#ddlCategory1', '#txtImage1', '#txtPrice1'];
             if (!validateFields(fieldsToValidate)) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "error",
-                    title: "Please fill the required fields",
-                });      
+                showAlert("error", "Please fill the required fields");
                 return;
             }
 
@@ -272,43 +287,31 @@ else
             formData.append('CategoryId', $('#ddlCategory1').val());
             formData.append('Description', $('#txtDescription1').val());
             formData.append('Price', $('#txtPrice1').val());
-            formData.append('Quantity', $('#txtQuantity1').val()); // Added Quantity
+            formData.append('Quantity', $('#txtQuantity1').val());
 
-            var imgInput = $('#txtImage1')[0].files[0];
+            var imgInput = $('#txtImage1').files;
             if (imgInput) {
                 formData.append('Image', imgInput);
             }
 
             $.ajax({
                 url: "/Product/Create",
-                method: "Post",
+                method: "POST",
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function (result) {
                     if (result.success) {
                         $('#addProModal').modal('hide');
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: result.message,
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                        showAlert("success", result.message);
                         setTimeout(function () {
                             window.location.reload();
-                        });
+                        }, 1500);
                     } else {
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "error",
-                            title: result.message,
-                        });
+                        showAlert("error", result.message);
                     }
                 },
-                error: function (xhr, status, error) {
-                    console.error("Error:", error);
-                }
+                error: handleAjaxError
             });
         }
 
@@ -324,7 +327,7 @@ else
                     $('#txtDescription2').val(result.description);
                     $('#txtPrice2').val(result.price);
                     $('#txtQuantity2').val(result.quantity);
-                    
+
                     if (result.image) {
                         $('#imgImage2').attr('src', '/Images/Products' + result.image).show();
                     } else {
@@ -332,20 +335,14 @@ else
                     }
                     $('#editProModal').modal('show');
                 },
-                error: function (xhr, status, error) {
-                    console.error("Error:", error);
-                }
+                error: handleAjaxError
             });
         }
 
         function UpdateProduct() {
-            const fieldsToValidate = ['#txtName2', '#txtQuantity2', 'ddlCategory2', 'txtImage2', 'txtPrice2'];
+            const fieldsToValidate = ['#txtName2', '#txtQuantity2', '#ddlCategory2', '#txtPrice2'];
             if (!validateFields(fieldsToValidate)) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "error",
-                    title: "Please fill the required fields",
-                });
+                showAlert("error", "Please fill the required fields");
                 return;
             }
 
@@ -355,9 +352,9 @@ else
             formData.append('CategoryId', $('#ddlCategory2').val());
             formData.append('Description', $('#txtDescription2').val());
             formData.append('Price', $('#txtPrice2').val());
-            formData.append('Quantity', $('#txtQuantity2').val()); // Added Quantity
+            formData.append('Quantity', $('#txtQuantity2').val());
 
-            var imgInput = $('#txtImage2')[0].files[0];
+            var imgInput = $('#txtImage2').files;
             if (imgInput) {
                 formData.append('Image', imgInput);
             }
@@ -372,38 +369,16 @@ else
                 success: function (result) {
                     if (result.success) {
                         $('#editProModal').modal('hide');
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: result.message,
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                        showAlert("success", result.message);
                         setTimeout(function () {
                             window.location.reload();
-                        });
+                        }, 1500);
                     } else {
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "error",
-                            title: result.message
-                        });
+                        showAlert("error", result.message);
                     }
                 },
-                error: function (xhr, status, error) {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: error
-                    });
-                }
+                error: handleAjaxError
             });
         }
     </script>
 }
-
-<style>
-    .bi {
-        font-size: 1.25rem;
-    }
-</style>
