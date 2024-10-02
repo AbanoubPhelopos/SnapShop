@@ -1,7 +1,9 @@
-﻿using SnapShop.Core.ViewModels.Categories;
+﻿using Microsoft.AspNetCore.Authorization;
+using SnapShop.Core.ViewModels.Categories;
 
 namespace SnapShop.Core.Controllers
 {
+    [Authorize(Roles = StaticDetails.RoleUserStorekeeper)]
     public class CategoryController(ICategoryRepository categoryRepository) : Controller
     {
         public IActionResult Index()

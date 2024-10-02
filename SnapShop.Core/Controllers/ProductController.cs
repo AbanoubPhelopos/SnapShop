@@ -1,5 +1,8 @@
-﻿namespace SnapShop.Core.Controllers
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace SnapShop.Core.Controllers
 {
+    [Authorize(Roles = StaticDetails.RoleUserStorekeeper)]
     public class ProductController(IProductRepository productRepository) : Controller
     {
         public async Task<IActionResult> Index()

@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SnapShop.Application\SnapShop.Application.csproj" />
+      <ProjectReference Include="..\SnapShop.Utility\SnapShop.Utility.csproj" />
     </ItemGroup>
 
     <ItemGroup>

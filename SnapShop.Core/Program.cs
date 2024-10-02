@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using SnapShop.Application.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using SnapShop.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,9 +12,19 @@ builder.Services.AddDbContext<ApplicationDbContext>
     (options => options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
 builder.Services.AddRazorPages();
-builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<IdentityUser,IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
+
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 
 var app = builder.Build();
