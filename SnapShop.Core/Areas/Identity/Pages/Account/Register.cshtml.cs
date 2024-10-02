@@ -22,6 +22,7 @@ using Microsoft.Extensions.Logging;
 
 namespace SnapShop.Core.Areas.Identity.Pages.Account
 {
+    [Authorize(Roles = StaticDetails.RoleUserManager)]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
