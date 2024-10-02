@@ -60,20 +60,18 @@
                 return Json(new { success = false, message = "An error occurred: " + ex.Message });
             }
         }
-
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                // Delete product asynchronously
                 await productRepository.DeleteProductAsync(id);
-                TempData["Toast"] = "Toast('Success','Record deleted successfully', 'success')";
+                return Json(new { success = true, message = "Record deleted successfully!" });
             }
             catch (Exception ex)
             {
-                TempData["Toast"] = $"Toast('Error','{ex.Message}', 'error')";
+                return Json(new { success = false, message = "An error occurred: " + ex.Message });
             }
-            return RedirectToAction("Index");
         }
     }
 }

@@ -58,12 +58,8 @@ else
                 <td>@item.Price</td>
                 <td>@item.Barcode</td>
                 <td>
-                    <a href="#" onclick="EditProduct(@item.Id)" class="btn btn-outline-secondary" aria-label="Edit Product">
-                        Edit <i class="bi bi-pencil-square"></i>
-                    </a>
-                    <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete this?')" aria-label="Delete Product">
-                        Delete <i class="bi bi-trash"></i>
-                    </a>
+                    <a onclick="EditProduct('@item.Id')" class="btn btn-outline-secondary btn-sm" style="cursor: pointer;">Edit <i class="bi bi-pencil-square"></i></a>
+                    <a onclick="DeleteProduct('@item.Id')" class="btn btn-outline-danger btn-sm ms-2" style="cursor: pointer;">Delete <i class="bi bi-trash"></i></a>
                 </td>
             </tr>
             sl++;
@@ -378,6 +374,54 @@ else
                     }
                 },
                 error: handleAjaxError
+            });
+        }
+
+        function DeleteProduct(productId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/Product/Delete",
+                        method: "POST",
+                        data: { id: productId },
+                        success: function (result) {
+                            if (result.success) {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Product has been deleted",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                setTimeout(function () {
+                                    window.location.reload();
+                                }, 1500); // Added delay to match the timer
+                            } else {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "error",
+                                    title: result.message
+                                });
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "error",
+                                title: "An error occurred",
+                                text: `Error: ${error}, Status: ${status}, Response: ${xhr.responseText}`
+                            });
+                        }
+                    });
+                }
             });
         }
     </script>

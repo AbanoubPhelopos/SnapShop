@@ -1,21 +1,21 @@
 ﻿@model List<Category>
 
-@{
+    @{
     ViewData["Title"] = "Categories";
-}
+    }
 
-<div class="me-auto">
-    <p><a href="#" role="button" data-bs-toggle="modal" class="btn btn-outline-primary" data-bs-target="#createCategoryModal">Add New Category</a></p>
-</div>
+    <div class="me-auto">
+        <p><a href="#" role="button" data-bs-toggle="modal" class="btn btn-outline-primary" data-bs-target="#createCategoryModal">Add New Category</a></p>
+    </div>
 
-@if (Model.Count == 0)
-{
+    @if (Model.Count == 0)
+    {
     <div class="alert alert-warning text-center" role="alert">
         There are no categories !!
     </div>
-}
-else
-{
+    }
+    else
+    {
     <div class="protable">
         <div class="table-responsive">
             <div class="container my-4">
@@ -26,7 +26,7 @@ else
                         <th>#</th>
                         <th>
                             <input class="txtSearch" type="text" name="txtSearch" placeholder="search by name" style="font-size: small; border: 1px solid #ced4da;"/>
-                            Name 
+                            Name
                         </th>
                         <th>Actions</th>
                     </tr>
@@ -36,15 +36,15 @@ else
                     int sl = 1;
                     foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@sl</td>
-                            <td>@item.Name</td> <!-- Change from <th> to <td> -->
-                            <td>
-                                <a onclick="EditCategory('@item.Id')" class="btn btn-outline-secondary btn-sm" style="cursor: pointer;">Edit <i class="bi bi-pencil-square"></i></a>
-                                <a onclick="DeleteCategory('@item.Id')" class="btn btn-outline-danger btn-sm ms-2" style="cursor: pointer;">Delete <i class="bi bi-trash"></i></a>
-                            </td>
-                        </tr>
-                        sl++;
+                    <tr>
+                        <td>@sl</td>
+                        <td>@item.Name</td> <!-- Change from <th> to <td> -->
+                        <td>
+                            <a onclick="EditCategory('@item.Id')" class="btn btn-outline-secondary btn-sm" style="cursor: pointer;">Edit <i class="bi bi-pencil-square"></i></a>
+                            <a onclick="DeleteCategory('@item.Id')" class="btn btn-outline-danger btn-sm ms-2" style="cursor: pointer;">Delete <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    sl++;
                     }
                     }
                     </tbody>
@@ -53,49 +53,49 @@ else
             </div>
         </div>
     </div>
-}
+    }
 
-<!-- Create Category Modal -->
-<div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title fs-5">Add Category</h2>
-                <button type="button" class="btn-outline-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <input id="txtName1" class="form-control form-control-sm" placeholder="Enter Name">
-                <input id="fileImage1" type="file" class="form-control form-control-sm mt-2" accept="image/*"/>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-sm btn-outline-primary" onclick="AddCategory()">Save</button>
+    <!-- Create Category Modal -->
+    <div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5">Add Category</h2>
+                    <button type="button" class="btn-outline-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input id="txtName1" class="form-control form-control-sm" placeholder="Enter Name">
+                    <input id="fileImage1" type="file" class="form-control form-control-sm mt-2" accept="image/*"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-sm btn-outline-primary" onclick="AddCategory()">Save</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Edit Category Modal -->
-<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title fs-5">Edit Category</h2>
-                <button type="button" class="btn-outline-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <input id="cId" type="hidden" />
-                <input id="txtName2" class="form-control form-control-sm" placeholder="Enter Name">
-                <input id="fileImage2" type="file" class="form-control form-control-sm mt-2" accept="image/*" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-outline-primary" onclick="UpdateCategory()">Save</button>
+    <!-- Edit Category Modal -->
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5">Edit Category</h2>
+                    <button type="button" class="btn-outline-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input id="cId" type="hidden" />
+                    <input id="txtName2" class="form-control form-control-sm" placeholder="Enter Name">
+                    <input id="fileImage2" type="file" class="form-control form-control-sm mt-2" accept="image/*" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="UpdateCategory()">Save</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-@section Scripts {
-    <script type="text/javascript">
+    @section Scripts {
+        <script type="text/javascript">
         $('.txtSearch').on('input', function () {
             let searchValue = $(this).val().toLowerCase();
 
@@ -154,7 +154,7 @@ else
                 }
             });
         }
-        
+
         function EditCategory(id) {
             $.ajax({
                 type: "GET",
@@ -169,7 +169,7 @@ else
                     } else {
                         $('#imgImage2').hide();
                     }
-                    
+
                     $('#editCategoryModal').modal('show');
                 },
                 error: function (xhr, status, error) {
@@ -177,7 +177,7 @@ else
                 }
             });
         }
-        
+
         function UpdateCategory() {
             var formData = new FormData();
             formData.append('Id', $('#cId').val());
@@ -261,6 +261,6 @@ else
                 }
             });
         }
-
+        
     </script>
 }

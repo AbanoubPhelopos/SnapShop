@@ -1,16 +1,9 @@
-﻿using SnapShop.Core.ViewModels.Catetories;
+﻿using SnapShop.Core.ViewModels.Categories;
 
 namespace SnapShop.Core.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController(ICategoryRepository categoryRepository) : Controller
     {
-        private readonly ICategoryRepository categoryRepository;
-
-        public CategoryController(ICategoryRepository categoryRepository)
-        {
-            this.categoryRepository = categoryRepository;
-        }
-
         public IActionResult Index()
         {
             var categories = categoryRepository.GetCategories().ToList();
@@ -24,7 +17,7 @@ namespace SnapShop.Core.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    await categoryRepository.InsertCategoryAsync(new ()
+                    await categoryRepository.InsertCategoryAsync(new Category
                     {
                         Name = model.Name
                     }, model.Image);
@@ -41,6 +34,7 @@ namespace SnapShop.Core.Controllers
                 return Json(new { success = false, message = "An error occurred: " + ex.Message });
             }
         }
+
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -49,6 +43,7 @@ namespace SnapShop.Core.Controllers
             {
                 return NotFound();
             }
+
             return Json(category);
         }
 
@@ -59,7 +54,7 @@ namespace SnapShop.Core.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    await categoryRepository.UpdateCategoryAsync(new Category()
+                    await categoryRepository.UpdateCategoryAsync(new Category
                     {
                         Id = model.Id,
                         Name = model.Name
@@ -78,19 +73,18 @@ namespace SnapShop.Core.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
                 await categoryRepository.DeleteCategoryAsync(id);
-                TempData["Toast"] = "Toast('Success','Record deleted successfully', 'success')";
+                return Json(new { success = true, message = "Record deleted successfully!" });
             }
             catch (Exception ex)
             {
-                TempData["Toast"] = $"Toast('Error','{ex.Message}', 'error')";
+                return Json(new { success = false, message = "An error occurred: " + ex.Message });
             }
-            return RedirectToAction("Index");
         }
     }
 }
