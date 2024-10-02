@@ -19,6 +19,6 @@ namespace SnapShop.Core.ViewModels.Categories
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; init; }
 
-        public IFormFile Image { get; init; }
+        public IFormFile? Image { get; init; }
     }
 }

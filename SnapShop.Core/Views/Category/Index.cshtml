@@ -3,11 +3,16 @@
     @{
     ViewData["Title"] = "Categories";
     }
-
+    
+<div class="d-flex">
     <div class="me-auto">
         <p><a href="#" role="button" data-bs-toggle="modal" class="btn btn-outline-primary" data-bs-target="#createCategoryModal">Add New Category</a></p>
     </div>
-
+    <div class="d-flex justify-content-center mb-3 position-relative">
+        <input class="txtSearch form-control form-control-sm w-auto ps-5" type="text" name="txtSearch" placeholder="Name" />
+        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ps-2" style="font-size: 1rem; color: #6c757d;"></i>
+    </div>
+</div>
     @if (Model.Count == 0)
     {
     <div class="alert alert-warning text-center" role="alert">
@@ -25,7 +30,6 @@
                     <tr>
                         <th>#</th>
                         <th>
-                            <input class="txtSearch" type="text" name="txtSearch" placeholder="search by name" style="font-size: small; border: 1px solid #ced4da;"/>
                             Name
                         </th>
                         <th>Actions</th>
@@ -55,47 +59,71 @@
     </div>
     }
 
-    <!-- Create Category Modal -->
-    <div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title fs-5">Add Category</h2>
-                    <button type="button" class="btn-outline-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Create Category Modal -->
+<div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5">Add Category</h2>
+                <button type="button" class="btn-outline-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-2">
+                    <label for="txtName1" class="col-sm-3 col-form-label">Name</label>
+                    <div class="col-sm-9">
+                        <input id="txtName1" name="Name" class="form-control form-control-sm" required>
+                        <div class="invalid-feedback">This Name field is required.</div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <input id="txtName1" class="form-control form-control-sm" placeholder="Enter Name">
-                    <input id="fileImage1" type="file" class="form-control form-control-sm mt-2" accept="image/*"/>
+                <div class="row mb-2">
+                    <label for="fileImage1" class="col-sm-3 col-form-label">Image</label>
+                    <div class="col-sm-9">
+                        <input id="fileImage1" type="file" class="form-control form-control-sm mt-2" accept="image/*" required>
+                        <div class="invalid-feedback">This Image field is required.</div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm btn-outline-primary" onclick="AddCategory()">Save</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-sm btn-outline-primary" onclick="AddCategory()">Save</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Edit Category Modal -->
-    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title fs-5">Edit Category</h2>
-                    <button type="button" class="btn-outline-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Edit Category Modal -->
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5">Edit Category</h2>
+                <button type="button" class="btn-outline-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="cId" type="hidden" />
+                <div class="row mb-2">
+                    <label for="txtName2" class="col-sm-3 col-form-label">Name</label>
+                    <div class="col-sm-9">
+                        <input id="txtName2" name="Name" class="form-control form-control-sm" required>
+                        <div class="invalid-feedback">This Name field is required.</div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <input id="cId" type="hidden" />
-                    <input id="txtName2" class="form-control form-control-sm" placeholder="Enter Name">
-                    <input id="fileImage2" type="file" class="form-control form-control-sm mt-2" accept="image/*" />
+                <div class="row mb-2">
+                    <label for="fileImage2" class="col-sm-3 col-form-label">Image</label>
+                    <div class="col-sm-9">
+                        <input id="fileImage2" type="file" class="form-control form-control-sm mt-2" accept="image/*" required>
+                        <div class="invalid-feedback">This Image field is required.</div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="UpdateCategory()">Save</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-outline-primary" onclick="UpdateCategory()">Save</button>
             </div>
         </div>
     </div>
+</div>
 
-    @section Scripts {
-        <script type="text/javascript">
+@section Scripts {
+    <script type="text/javascript">
         $('.txtSearch').on('input', function () {
             let searchValue = $(this).val().toLowerCase();
 
@@ -113,11 +141,29 @@
             });
         });
 
+        function validateFields(fields) {
+            let isValid = true;
+            fields.forEach(function (field) {
+                if (!$(field).val()) {
+                    $(field).addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    $(field).removeClass('is-invalid');
+                }
+            });
+            return isValid;
+        }
 
         function AddCategory() {
+            const fieldsToValidate = ['#txtName1', '#fileImage1'];
+            if (!validateFields(fieldsToValidate)) {
+                showAlert("error", "Please fill the required fields");
+                return;
+            }
+
             var formData = new FormData();
             formData.append('name', $('#txtName1').val());
-            var imageFile = $('#fileImage1')[0].files[0];
+            var imageFile = $('#fileImage1').files;
             if (imageFile) {
                 formData.append('image', imageFile);
             }
@@ -177,12 +223,17 @@
                 }
             });
         }
-
+        
         function UpdateCategory() {
+            const fieldsToValidate = ['#txtName2'];
+            if (!validateFields(fieldsToValidate)) {
+                showAlert("error", "Please fill the required fields");
+                return;
+            }
             var formData = new FormData();
             formData.append('Id', $('#cId').val());
             formData.append('Name', $('#txtName2').val());
-            var imageFile = $('#fileImage2')[0].files[0];
+            var imageFile = $('#fileImage2').files;
             if (imageFile) {
                 formData.append('Image', imageFile);
             }
@@ -219,6 +270,7 @@
                 }
             });
         }
+
         function DeleteCategory(categoryId) {
             Swal.fire({
                 title: 'Are you sure?',
@@ -261,6 +313,5 @@
                 }
             });
         }
-        
     </script>
 }

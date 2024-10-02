@@ -93,10 +93,6 @@ else
                             <div class="col-sm-9">
                                 <select id="ddlCategory1" name="Category" asp-items="@ViewBag.Categories" class="form-select form-select-sm" required>
                                     <option value="" disabled selected>--Select Category--</option>
-                                    @foreach (var item in ViewBag.Categories)
-                                    {
-                                    <option value="@item.Value">@item.Text</option>
-                                    }
                                 </select>
                                 <div class="invalid-feedback">This Category field is required.</div>
                             </div>
