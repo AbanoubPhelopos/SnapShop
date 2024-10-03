@@ -14,14 +14,6 @@ public class CashierController(ICashierServices cashierServices) : Controller
         return View(categories);
     }
     
-    
-    [HttpGet]
-    public IActionResult Search(string query)
-    {
-        var categories = cashierServices.GetCategories(query).ToList();
-        return View(nameof(Index),categories);
-    }
-    
     [HttpGet]
     public IActionResult GetProducts(int id)
     {
