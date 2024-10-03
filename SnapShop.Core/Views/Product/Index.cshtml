@@ -44,16 +44,7 @@ else
             {
             <tr>
                 <td>@sl</td>
-                <td>
-                    @if (!string.IsNullOrEmpty(item.Image))
-                    {
-                    <a href="#" class="show-image" data-image-path="@item.Image">@item.Name</a>
-                    }
-                    else
-                    {
-                    <span>@item.Name</span>
-                    }
-                </td>
+                <td>@item.Name</td>
                 <td>@item.Category?.Name</td>
                 <td>@item.Price</td>
                 <td>@item.Barcode</td>
@@ -281,7 +272,10 @@ else
             formData.append('Price', $('#txtPrice1').val());
             formData.append('Quantity', $('#txtQuantity1').val());
 
-            var imgInput = $('#txtImage1').files;
+            var imgInput = $('#txtImage1').get(0).files?.[0];
+            
+            console.log(imgInput);
+            
             if (imgInput) {
                 formData.append('Image', imgInput);
             }
@@ -346,7 +340,7 @@ else
             formData.append('Price', $('#txtPrice2').val());
             formData.append('Quantity', $('#txtQuantity2').val());
 
-            var imgInput = $('#txtImage2').files;
+            var imgInput = $('#txtImage2').get(0).files;
             if (imgInput) {
                 formData.append('Image', imgInput);
             }

@@ -2,27 +2,19 @@
 
 namespace SnapShop.Core.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
+        : ICategoryRepository
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IWebHostEnvironment _webHostEnvironment;
-
-        public CategoryRepository(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
-        {
-            _context = context;
-            _webHostEnvironment = webHostEnvironment;
-        }
-
         // Get list of all categories
         public List<Category?> GetCategories()
         {
-            return _context.Categories.ToList();
+            return context.Categories.ToList();
         }
 
         // Get category by ID
         public async Task<Category?> GetCategoryAsync(int id)
         {
-            return await _context.Categories.FindAsync(id);
+            return await context.Categories.FindAsync(id);
         }
 
         // Update category and handle image update
@@ -30,7 +22,7 @@ namespace SnapShop.Core.Repositories
         {
             if (category == null) throw new ArgumentNullException(nameof(category));
 
-            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            string wwwRootPath = webHostEnvironment.WebRootPath;
 
             // Handle image update logic
             if (formFile != null)
@@ -59,14 +51,14 @@ namespace SnapShop.Core.Repositories
             }
 
             // Update category in the database
-            _context.Categories.Update(category);
-            await _context.SaveChangesAsync();
+            context.Categories.Update(category);
+            await context.SaveChangesAsync();
         }
 
         // Insert new category and handle image upload
         public async Task InsertCategoryAsync(Category category, IFormFile? formFile)
         {
-            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            string wwwRootPath = webHostEnvironment.WebRootPath;
 
             if (formFile != null)
             {
@@ -84,20 +76,20 @@ namespace SnapShop.Core.Repositories
             }
 
             // Add category to the database
-            await _context.Categories.AddAsync(category);
-            await _context.SaveChangesAsync();
+            await context.Categories.AddAsync(category);
+            await context.SaveChangesAsync();
         }
 
         // Delete category and remove the associated image
         public async Task DeleteCategoryAsync(int categoryId)
         {
-            var category = await _context.Categories.FindAsync(categoryId);
+            var category = await context.Categories.FindAsync(categoryId);
             if (category != null)
             {
                 // Delete the image file if it exists
                 if (!string.IsNullOrEmpty(category.Image))
                 {
-                    var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, category.Image.Trim('\\'));
+                    var imagePath = Path.Combine(webHostEnvironment.WebRootPath, category.Image.Trim('\\'));
                     if (File.Exists(imagePath))
                     {
                         File.Delete(imagePath);
@@ -105,8 +97,8 @@ namespace SnapShop.Core.Repositories
                 }
 
                 // Remove category from the database
-                _context.Categories.Remove(category);
-                await _context.SaveChangesAsync();
+                context.Categories.Remove(category);
+                await context.SaveChangesAsync();
             }
         }
     }

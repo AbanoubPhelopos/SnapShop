@@ -163,7 +163,7 @@
 
             var formData = new FormData();
             formData.append('name', $('#txtName1').val());
-            var imageFile = $('#fileImage1').files;
+            var imageFile = $('#fileImage1').get(0).files?.[0];
             if (imageFile) {
                 formData.append('image', imageFile);
             }
@@ -233,7 +233,7 @@
             var formData = new FormData();
             formData.append('Id', $('#cId').val());
             formData.append('Name', $('#txtName2').val());
-            var imageFile = $('#fileImage2').files;
+            var imageFile = $('#fileImage2').get(0).files?.[0];
             if (imageFile) {
                 formData.append('Image', imageFile);
             }

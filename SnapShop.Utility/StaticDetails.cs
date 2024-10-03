@@ -1,4 +1,4 @@
-﻿namespace SnapShop.Core;
+﻿namespace SnapShop.Utility;
 
 public static class StaticDetails
 {

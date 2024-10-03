@@ -1,0 +1,60 @@
+﻿@model List<Category>
+
+@{
+ViewData["Title"] = "Categories";
+}
+
+<div class="d-flex">
+    <div class="d-flex justify-content-center mb-3 position-relative">
+        <input class="txtSearch form-control form-control-sm w-auto ps-5" type="text" name="txtSearch" placeholder="Name" />
+        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ps-2" style="font-size: 1rem; color: #6c757d;"></i>
+    </div>
+</div>
+
+@if (Model.Count == 0)
+{
+<div class="alert alert-warning text-center" role="alert">
+    There are no categories !!
+</div>
+}
+else
+{
+<div class="container my-4">
+    <div class="row" id="protbody">
+        @foreach (var item in Model)
+        {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 w-100">
+                <img src="@item.Image" class="card-img-top" alt="@item.Name" style="object-fit: cover; height: 200px;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">@item.Name</h5>
+                    <a asp-action="GetProducts" asp-route-id="@item.Id" class="btn btn-outline-secondary mt-auto">Category Products</a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+}
+
+@section Scripts {
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.txtSearch').on('input', function () {
+            let searchValue = $(this).val().toLowerCase();
+
+            // Iterate through each card in the row
+            $('#protbody .col-md-4').each(function () {
+                let categoryName = $(this).find('.card-title').text().toLowerCase().trim();
+
+                // Show or hide based on search match
+                if (categoryName.includes(searchValue)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
+}

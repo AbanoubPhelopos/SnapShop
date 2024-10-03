@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using SnapShop.Core.ViewModels.Categories;
+using SnapShop.Utility;
 
 namespace SnapShop.Core.Controllers
 {

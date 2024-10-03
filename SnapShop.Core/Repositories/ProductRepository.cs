@@ -3,36 +3,26 @@ using SnapShop.Application.Data;
 
 namespace SnapShop.Core.Repositories
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
+        : IProductRepository
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IWebHostEnvironment _webHostEnvironment;
-
-        public ProductRepository(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
-        {
-            _context = context;
-            _webHostEnvironment = webHostEnvironment;
-        }
-
-        // Get all products with their categories
         public IEnumerable<Product> GetProducts()
         {
-            return _context.Products.Include(p => p.Category).ToList();
+            return context.Products.Include(p => p.Category).ToList();
         }
 
         // Get product by ID
         public async Task<Product?> GetProductAsync(int id)
         {
-            return await _context.Products.FindAsync(id);
+            return await context.Products.FindAsync(id);
         }
 
         // Get all categories
         public IEnumerable<Category?> GetCategories()
         {
-            return _context.Categories;
+            return context.Categories;
         }
 
-        // Insert a new product and handle image upload
         public async Task InsertProductAsync(Product product, IFormFile? image)
         {
             if (image != null && image.Length > 0)
@@ -41,14 +31,13 @@ namespace SnapShop.Core.Repositories
             }
 
             product.Barcode = GenerateUniqueBarcode();
-            await _context.Products.AddAsync(product);
-            await _context.SaveChangesAsync();
+            await context.Products.AddAsync(product);
+            await context.SaveChangesAsync();
         }
 
-        // Update a product and handle image update
         public async Task UpdateProductAsync(Product product, IFormFile? image)
         {
-            var existingProduct = await _context.Products.FindAsync(product.Id);
+            var existingProduct = await context.Products.FindAsync(product.Id);
             if (existingProduct == null)
                 throw new Exception("Product not found.");
 
@@ -70,21 +59,21 @@ namespace SnapShop.Core.Repositories
             product.Barcode = !string.IsNullOrEmpty(product.Barcode) ? product.Barcode : existingProduct.Barcode;
 
             // Copy updated properties to the existing product, excluding the barcode
-            _context.Entry(existingProduct).CurrentValues.SetValues(product);
-    
+            context.Entry(existingProduct).CurrentValues.SetValues(product);
+
             // Preserve the existing barcode
             existingProduct.Barcode = product.Barcode;
 
             // Update the existing product with the new values
-            _context.Update(existingProduct);
-            await _context.SaveChangesAsync();
+            context.Update(existingProduct);
+            await context.SaveChangesAsync();
         }
 
 
         // Delete product and its associated image
         public async Task DeleteProductAsync(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await context.Products.FindAsync(id);
             if (product != null)
             {
                 if (!string.IsNullOrEmpty(product.Image))
@@ -92,8 +81,8 @@ namespace SnapShop.Core.Repositories
                     DeleteExistingImage(product.Image); // Delete image from file system
                 }
 
-                _context.Products.Remove(product);
-                await _context.SaveChangesAsync();
+                context.Products.Remove(product);
+                await context.SaveChangesAsync();
             }
         }
 
@@ -106,18 +95,13 @@ namespace SnapShop.Core.Repositories
         // Helper method to save images to the file system
         private async Task<string> SaveImageAsync(IFormFile image)
         {
-            if (image.Length > 500 * 1024) // 500 KB size limit
-            {
-                throw new Exception("Image size exceeds 500 KB.");
-            }
-
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(image.FileName)}";
-            var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images/Products", fileName);
+            var filePath = Path.Combine(webHostEnvironment.WebRootPath, "Images/Products", fileName);
 
             // Ensure directory exists
-            if (!Directory.Exists(Path.Combine(_webHostEnvironment.WebRootPath, "Images/Products")))
+            if (!Directory.Exists(Path.Combine(webHostEnvironment.WebRootPath, "Images/Products")))
             {
-                Directory.CreateDirectory(Path.Combine(_webHostEnvironment.WebRootPath, "Images/Products"));
+                Directory.CreateDirectory(Path.Combine(webHostEnvironment.WebRootPath, "Images/Products"));
             }
 
             // Save the image file
@@ -129,10 +113,11 @@ namespace SnapShop.Core.Repositories
             return fileName;
         }
 
+
         // Helper method to delete existing images
         private void DeleteExistingImage(string imageName)
         {
-            var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images/Products", imageName);
+            var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "Images/Products", imageName);
             if (File.Exists(imagePath))
             {
                 File.Delete(imagePath);

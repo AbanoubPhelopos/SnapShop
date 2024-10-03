@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using SnapShop.Core.ViewModels.Products;
+using SnapShop.Utility;
 
 namespace SnapShop.Core.Controllers
 {
@@ -21,15 +23,20 @@ namespace SnapShop.Core.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm] Product product, IFormFile image)
+        [HttpPost]
+        public async Task<IActionResult> Create([FromForm] ProductsVM.Create modal)
         {
             try
             {
-                // Generate a new GUID for the barcode
-                product.Barcode = Guid.NewGuid().ToString().Substring(0, 6);
-
                 // Insert the product asynchronously
-                await productRepository.InsertProductAsync(product, image);
+                await productRepository.InsertProductAsync(new()
+                {
+                    Name = modal.Name,
+                    Description = modal.Description,
+                    CategoryId = modal.CategoryId,
+                    Quantity = modal.Quantity,
+                    Price = modal.Price,
+                }, modal.Image);
                 return Json(new { success = true, message = "Record created successfully!" });
             }
             catch (Exception ex)

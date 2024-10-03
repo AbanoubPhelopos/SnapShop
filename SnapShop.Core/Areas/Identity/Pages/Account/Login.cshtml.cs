@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using SnapShop.Utility;
 
 namespace SnapShop.Core.Areas.Identity.Pages.Account
 {
@@ -109,13 +110,22 @@ namespace SnapShop.Core.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    if (User.IsInRole(StaticDetails.RoleUserManager))
+                    {
+                        return LocalRedirect(Url.Action("Index", "Manager"));
+                    }
+                    else if (User.IsInRole(StaticDetails.RoleUserCashier))
+                    {
+                        return LocalRedirect(Url.Action("Index", "Cashier"));
+                    }
+                    else
+                    {
+                        return LocalRedirect(Url.Action("Index", "StoreKeeper"));
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -136,5 +146,6 @@ namespace SnapShop.Core.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+
     }
 }

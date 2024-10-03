@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SnapShop.Core.Models;
+using SnapShop.Utility;
 
 namespace SnapShop.Core.Controllers;
 
@@ -17,7 +18,17 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        if (User.IsInRole(StaticDetails.RoleUserStorekeeper))
+        {
+            return RedirectToAction("Index", "Category");
+        }else if (User.IsInRole(StaticDetails.RoleUserCashier))
+        {
+            return RedirectToAction("Index", "Cashier");
+        }
+        else
+        {
+            return RedirectToAction("Index", "Manager");
+        }
     }
 
     public IActionResult Privacy()
