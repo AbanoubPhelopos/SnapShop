@@ -1,0 +1,59 @@
+﻿@model List<Order>
+@{
+    ViewData["Title"] = "GetAllOrders";
+}
+
+<h2>Order List</h2>
+
+<!-- Display TempData messages for success or error -->
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<!-- Orders Table -->
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Order Date</th>
+            <th>Total Amount</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.OrderId</td>
+                    <td>@order.OrderDate</td>
+                    <td>@order.TotalAmount.ToString("C")</td>
+                    <td>
+                        <!-- Delete Button -->
+                        <form asp-action="DeleteOrder" method="post" onsubmit="return confirm('Are you sure you want to delete this order?');">
+                            <input type="hidden" name="orderId" value="@order.OrderId" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">No orders found.</td>
+            </tr>
+        }
+    </tbody>
+</table>

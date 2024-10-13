@@ -41,5 +41,11 @@ namespace SnapShop.Core.Repositories
 
             return category;
         }
+
+        public List<Product> GetAllProducts()
+        {
+            var products = context.Products.ToList();
+            return products;
+        }
     }
 }

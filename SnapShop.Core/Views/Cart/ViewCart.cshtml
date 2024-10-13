@@ -1,0 +1,71 @@
+﻿@model List<CartItem>
+@{
+    SelectList CategoryOptions = new SelectList(ViewBag.Categories, "Id", "Name");
+}
+
+<!-- Display error or success messages -->
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<h2 class="my-4">Cashier Cart</h2>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>
+                    <form asp-action="UpdateCartItem" method="post" class="d-inline-flex">
+                        <input type="hidden" name="cartItemId" value="@item.CartItemId" />
+                        <input type="number" name="quantity" class="form-control form-control-sm mx-2" value="@item.Quantity" min="1" style="width: 80px;" />
+                        <button type="submit" class="btn btn-sm btn-primary" title="Update Quantity">
+                            <i class="fas fa-sync-alt"></i> Update
+                        </button>
+                    </form>
+                </td>
+                <td>@item.Product.Price.ToString("C")</td>
+                <td>
+                    <form asp-action="RemoveFromCart" method="post" class="d-inline">
+                        <input type="hidden" name="cartItemId" value="@item.CartItemId" />
+                        <button type="submit" class="btn btn-sm btn-danger" title="Remove Item">
+                            <i class="fas fa-trash-alt"></i> Remove
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<!-- Checkout Button -->
+<div class="text-right mt-4">
+    <a asp-action="Checkout" class="btn btn-success btn-lg">
+        <i class="fas fa-check"></i> Checkout
+    </a>
+</div>

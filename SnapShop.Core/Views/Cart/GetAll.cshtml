@@ -1,0 +1,21 @@
+﻿@model List<CartItem> 
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+<h1>GetAll</h1>
+<table class="table table-bordered">
+        @foreach(var item in Model)
+        {
+          
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Product.Price.ToString()</td>
+                <td>@item.CartItemId</td>
+            </tr>
+           
+           
+        }
+</table>
+

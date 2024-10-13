@@ -6,7 +6,7 @@ namespace SnapShop.Core.Controllers
 {
     [Authorize(Roles = StaticDetails.RoleUserStorekeeper)]
     public class ProductController(IProductRepository productRepository) : Controller
-    {
+    { 
         public async Task<IActionResult> Index()
         {
             // Load categories asynchronously

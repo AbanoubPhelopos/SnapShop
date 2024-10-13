@@ -1,0 +1,10 @@
+﻿@using SnapShop.Core.ViewModels.Cart
+
+@model CheckoutViewModel
+<h2>Thank you for your purchase!</h2>
+<h4>Order Details</h4>
+<p><strong>Order ID:</strong> @Model.OrderId</p>
+<p><strong>Order Date:</strong> @DateTime.UtcNow.ToString("MM/dd/yyyy")</p>
+<h4>Total Amount: <strong>@Model.TotalAmount.ToString("C")</strong></h4>
+
+<a asp-controller="Cashier" asp-action="Index" class="btn btn-primary mt-4">Continue Shopping</a>

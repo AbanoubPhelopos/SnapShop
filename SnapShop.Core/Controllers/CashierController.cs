@@ -6,7 +6,6 @@ namespace SnapShop.Core.Controllers;
 [Authorize(Roles = StaticDetails.RoleUserCashier)]
 public class CashierController(ICashierServices cashierServices) : Controller
 {
-
     [HttpGet]
     public IActionResult Index()
     {
@@ -26,4 +25,5 @@ public class CashierController(ICashierServices cashierServices) : Controller
         var product = cashierServices.GetProduct(id);
         return View(product);
     }
+ 
 }

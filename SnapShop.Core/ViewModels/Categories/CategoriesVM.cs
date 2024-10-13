@@ -14,7 +14,7 @@ namespace SnapShop.Core.ViewModels.Categories
     public record EditCategoryViewModel
     {
         [Required]
-        public int Id { get; init; }
+        public int Id { get; init; } 
 
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; init; }
