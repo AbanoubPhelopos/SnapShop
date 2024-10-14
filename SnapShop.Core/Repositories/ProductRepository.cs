@@ -10,7 +10,11 @@ namespace SnapShop.Core.Repositories
         {
             return context.Products.Include(p => p.Category).ToList();
         }
-
+        public Product GetById(int productId)
+        {
+            // Fetch the product from the database by ID
+            return context.Products.FirstOrDefault(p => p.Id == productId);
+        }
         // Get product by ID
         public async Task<Product?> GetProductAsync(int id)
         {
@@ -122,6 +126,11 @@ namespace SnapShop.Core.Repositories
             {
                 File.Delete(imagePath);
             }
+        }
+
+        public IEnumerable<Product> GetProductsByCategory(int categoryId)
+        {
+            return context.Products.Where(p => p.CategoryId == categoryId).ToList();  // Fetch products for the selected category
         }
     }
 }

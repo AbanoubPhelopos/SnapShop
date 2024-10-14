@@ -1,0 +1,54 @@
+﻿@using SnapShop.Core.ViewModels.Cart
+
+@model CheckoutViewModel
+
+<h2 class="my-4">Checkout</h2>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Order Summary</h5>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.CartItems != null && Model.CartItems.Any())
+                {
+                    foreach (var item in Model.CartItems)
+                    {
+                        <tr>
+                            <td>@item.Product.Name</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Product.Price.ToString("C")</td>
+                        </tr>
+                        <!-- Hidden fields to submit cart items -->
+                        <input type="hidden" name="CartItems[@Model.CartItems.IndexOf(item)].CartItemId" value="@item.CartItemId" />
+                        <input type="hidden" name="CartItems[@Model.CartItems.IndexOf(item)].ProductId" value="@item.ProductId" />
+                        <input type="hidden" name="CartItems[@Model.CartItems.IndexOf(item)].Quantity" value="@item.Quantity" />
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" class="text-center">No items in the cart.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <h4 class="mt-4">Total Amount: <strong>@Model.TotalAmount.ToString("C")</strong></h4>
+
+        <form asp-action="Checkout" method="post" class="mt-4">
+            <button type="submit" class="btn btn-success">Complete Purchase</button>
+        </form>
+    </div>
+</div>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
