@@ -13,6 +13,7 @@ namespace SnapShop.Core.ViewModels.Users
         [Required(ErrorMessage = "Role is required.")]
         public string Role { get; set; }
 
+
         [Required(ErrorMessage = "Password is required.")]
         [StringLength(100, ErrorMessage = "The password must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -22,6 +23,5 @@ namespace SnapShop.Core.ViewModels.Users
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        public IFormFile Image { get; set; } // For handling user images
     }
 }

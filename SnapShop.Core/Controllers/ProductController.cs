@@ -6,7 +6,7 @@ namespace SnapShop.Core.Controllers
 {
     [Authorize(Roles = StaticDetails.RoleUserStorekeeper)]
     public class ProductController(IProductRepository productRepository) : Controller
-    { 
+    {
         public async Task<IActionResult> Index()
         {
             // Load categories asynchronously
@@ -22,7 +22,6 @@ namespace SnapShop.Core.Controllers
             return View(products);
         }
 
-        [HttpPost]
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] ProductsVM.Create modal)
         {
@@ -44,6 +43,7 @@ namespace SnapShop.Core.Controllers
                 return Json(new { success = false, message = "An error occurred: " + ex.Message });
             }
         }
+        [HttpPost]
 
         public async Task<IActionResult> Edit(int id)
         {

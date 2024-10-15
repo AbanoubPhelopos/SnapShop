@@ -1,154 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\source\\repos\\SnapShop\\SnapShop\\",
+  "WorkspaceRootPath": "G:\\my depression\\educational shit\\dotnet\\SnapShop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|g:\\my depression\\educational shit\\dotnet\\snapshop\\snapshop.core\\controllers\\managercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\controllers\\managercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\cart\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\cart\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|g:\\my depression\\educational shit\\dotnet\\snapshop\\snapshop.core\\views\\manager\\getemployees.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\manager\\getemployees.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|g:\\my depression\\educational shit\\dotnet\\snapshop\\snapshop.core\\viewmodels\\users\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\viewmodels\\users\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|g:\\my depression\\educational shit\\dotnet\\snapshop\\snapshop.core\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\cart\\confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\cart\\confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\viewmodels\\cart\\checkoutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\viewmodels\\cart\\checkoutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\cart\\viewcart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\cart\\viewcart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4664862C-D1FE-4876-9C1F-31A5FF755B4D}|SnapShop.Application\\SnapShop.Application.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.application\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4664862C-D1FE-4876-9C1F-31A5FF755B4D}|SnapShop.Application\\SnapShop.Application.csproj|solutionrelative:snapshop.application\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4664862C-D1FE-4876-9C1F-31A5FF755B4D}|SnapShop.Application\\SnapShop.Application.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.application\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4664862C-D1FE-4876-9C1F-31A5FF755B4D}|SnapShop.Application\\SnapShop.Application.csproj|solutionrelative:snapshop.application\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\cart\\getallorders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\cart\\getallorders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\cashier\\getproduct.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\cashier\\getproduct.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\controllers\\cashiercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\controllers\\cashiercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\repositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\repositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4664862C-D1FE-4876-9C1F-31A5FF755B4D}|SnapShop.Application\\SnapShop.Application.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.application\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4664862C-D1FE-4876-9C1F-31A5FF755B4D}|SnapShop.Application\\SnapShop.Application.csproj|solutionrelative:snapshop.application\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4664862C-D1FE-4876-9C1F-31A5FF755B4D}|SnapShop.Application\\SnapShop.Application.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.application\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4664862C-D1FE-4876-9C1F-31A5FF755B4D}|SnapShop.Application\\SnapShop.Application.csproj|solutionrelative:snapshop.application\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4664862C-D1FE-4876-9C1F-31A5FF755B4D}|SnapShop.Application\\SnapShop.Application.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.application\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4664862C-D1FE-4876-9C1F-31A5FF755B4D}|SnapShop.Application\\SnapShop.Application.csproj|solutionrelative:snapshop.application\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|g:\\my depression\\educational shit\\dotnet\\snapshop\\snapshop.core\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\repositories\\cashierservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\repositories\\cashierservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\repositories\\icashierservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\repositories\\icashierservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\category\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\category\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\viewmodels\\products\\productsvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\viewmodels\\products\\productsvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\cashier\\getproducts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\cashier\\getproducts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\cashier\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\cashier\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\viewmodels\\categories\\categoriesvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\viewmodels\\categories\\categoriesvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3F6DF44A-D1EC-4837-963B-08A06CBF4384}|SnapShop.Utility\\SnapShop.Utility.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.utility\\emailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3F6DF44A-D1EC-4837-963B-08A06CBF4384}|SnapShop.Utility\\SnapShop.Utility.csproj|solutionrelative:snapshop.utility\\emailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3F6DF44A-D1EC-4837-963B-08A06CBF4384}|SnapShop.Utility\\SnapShop.Utility.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.utility\\staticdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3F6DF44A-D1EC-4837-963B-08A06CBF4384}|SnapShop.Utility\\SnapShop.Utility.csproj|solutionrelative:snapshop.utility\\staticdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|g:\\my depression\\educational shit\\dotnet\\snapshop\\snapshop.core\\views\\manager\\getcategories.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\manager\\getcategories.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -158,464 +34,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CartController.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Controllers\\CartController.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Controllers\\CartController.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Controllers\\CartController.cs",
-              "RelativeToolTip": "SnapShop.Core\\Controllers\\CartController.cs",
-              "ViewState": "AgIAAFgAAAAAAAAAAAAAwGQAAABFAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "G:\\my depression\\educational shit\\dotnet\\SnapShop\\SnapShop.Core\\Views\\Product\\Index.cshtml",
+              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Product\\Index.cshtml",
+              "ToolTip": "G:\\my depression\\educational shit\\dotnet\\SnapShop\\SnapShop.Core\\Views\\Product\\Index.cshtml",
+              "RelativeToolTip": "SnapShop.Core\\Views\\Product\\Index.cshtml",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAIwFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-15T23:23:38.201Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "G:\\my depression\\educational shit\\dotnet\\SnapShop\\SnapShop.Core\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "SnapShop.Core\\Controllers\\ProductController.cs",
+              "ToolTip": "G:\\my depression\\educational shit\\dotnet\\SnapShop\\SnapShop.Core\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "SnapShop.Core\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAADwv04AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T14:02:20.974Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-15T23:20:45.374Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Checkout.cshtml",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\Checkout.cshtml",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Cart\\Checkout.cshtml",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\Checkout.cshtml",
-              "RelativeToolTip": "SnapShop.Core\\Views\\Cart\\Checkout.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAgwCIAAAAUAAAAAAAAAA==",
+              "Title": "GetEmployees.cshtml",
+              "DocumentMoniker": "G:\\my depression\\educational shit\\dotnet\\SnapShop\\SnapShop.Core\\Views\\Manager\\GetEmployees.cshtml",
+              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Manager\\GetEmployees.cshtml",
+              "ToolTip": "G:\\my depression\\educational shit\\dotnet\\SnapShop\\SnapShop.Core\\Views\\Manager\\GetEmployees.cshtml",
+              "RelativeToolTip": "SnapShop.Core\\Views\\Manager\\GetEmployees.cshtml",
+              "ViewState": "AgIAANIAAAAAAAAAAAAIwNgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-10T18:30:07.446Z",
+              "WhenOpened": "2024-10-15T20:22:10.162Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ManagerController.cs",
+              "DocumentMoniker": "G:\\my depression\\educational shit\\dotnet\\SnapShop\\SnapShop.Core\\Controllers\\ManagerController.cs",
+              "RelativeDocumentMoniker": "SnapShop.Core\\Controllers\\ManagerController.cs",
+              "ToolTip": "G:\\my depression\\educational shit\\dotnet\\SnapShop\\SnapShop.Core\\Controllers\\ManagerController.cs",
+              "RelativeToolTip": "SnapShop.Core\\Controllers\\ManagerController.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAswFEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T21:02:42.699Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "SnapShop.Core\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAADoAAAAAAAAAAAAQwFoAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-13T13:11:59.711Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CartItem.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Application\\Models\\CartItem.cs",
-              "RelativeDocumentMoniker": "SnapShop.Application\\Models\\CartItem.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Application\\Models\\CartItem.cs",
-              "RelativeToolTip": "SnapShop.Application\\Models\\CartItem.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAADwvxUAAAATAAAAAAAAAA==",
+              "Title": "UserViewModel.cs",
+              "DocumentMoniker": "G:\\my depression\\educational shit\\dotnet\\SnapShop\\SnapShop.Core\\ViewModels\\Users\\UserViewModel.cs",
+              "RelativeDocumentMoniker": "SnapShop.Core\\ViewModels\\Users\\UserViewModel.cs",
+              "ToolTip": "G:\\my depression\\educational shit\\dotnet\\SnapShop\\SnapShop.Core\\ViewModels\\Users\\UserViewModel.cs",
+              "RelativeToolTip": "SnapShop.Core\\ViewModels\\Users\\UserViewModel.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAswBUAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T15:45:18.717Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CheckoutViewModel.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\ViewModels\\Cart\\CheckoutViewModel.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\ViewModels\\Cart\\CheckoutViewModel.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\ViewModels\\Cart\\CheckoutViewModel.cs",
-              "RelativeToolTip": "SnapShop.Core\\ViewModels\\Cart\\CheckoutViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T15:36:52.258Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ViewCart.cshtml",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\ViewCart.cshtml",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Cart\\ViewCart.cshtml",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\ViewCart.cshtml",
-              "RelativeToolTip": "SnapShop.Core\\Views\\Cart\\ViewCart.cshtml",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAwEcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-10T14:08:09.519Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CartRepository.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\CartRepository.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Repositories\\CartRepository.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\CartRepository.cs",
-              "RelativeToolTip": "SnapShop.Core\\Repositories\\CartRepository.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAqwEIAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T13:59:09.341Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ICartRepository.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\ICartRepository.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Repositories\\ICartRepository.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\ICartRepository.cs",
-              "RelativeToolTip": "SnapShop.Core\\Repositories\\ICartRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T13:57:29.4Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Program.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Program.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Program.cs",
-              "RelativeToolTip": "SnapShop.Core\\Program.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAAwCoAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-11T21:18:55.96Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "WhenOpened": "2024-10-15T20:51:34.039Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Confirmation.cshtml",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\Confirmation.cshtml",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Cart\\Confirmation.cshtml",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\Confirmation.cshtml",
-              "RelativeToolTip": "SnapShop.Core\\Views\\Cart\\Confirmation.cshtml",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAgwAkAAABhAAAAAAAAAA==",
+              "Title": "GetCategories.cshtml",
+              "DocumentMoniker": "G:\\my depression\\educational shit\\dotnet\\SnapShop\\SnapShop.Core\\Views\\Manager\\GetCategories.cshtml",
+              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Manager\\GetCategories.cshtml",
+              "ToolTip": "G:\\my depression\\educational shit\\dotnet\\SnapShop\\SnapShop.Core\\Views\\Manager\\GetCategories.cshtml",
+              "RelativeToolTip": "SnapShop.Core\\Views\\Manager\\GetCategories.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-10T18:36:37.622Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Application\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "SnapShop.Application\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Application\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "SnapShop.Application\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-11T19:22:06.324Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\appsettings.json",
-              "RelativeDocumentMoniker": "SnapShop.Core\\appsettings.json",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\appsettings.json",
-              "RelativeToolTip": "SnapShop.Core\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-10-13T13:48:31.699Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "GetAllOrders.cshtml",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\GetAllOrders.cshtml",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Cart\\GetAllOrders.cshtml",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\GetAllOrders.cshtml",
-              "RelativeToolTip": "SnapShop.Core\\Views\\Cart\\GetAllOrders.cshtml",
-              "ViewState": "AgIAACAAAAAAAAAAAAAUwC0AAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-12T11:06:38.907Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "CashierController.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Controllers\\CashierController.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Controllers\\CashierController.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Controllers\\CashierController.cs",
-              "RelativeToolTip": "SnapShop.Core\\Controllers\\CashierController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBcAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T13:53:09.163Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "GetProduct.cshtml",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cashier\\GetProduct.cshtml",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Cashier\\GetProduct.cshtml",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cashier\\GetProduct.cshtml",
-              "RelativeToolTip": "SnapShop.Core\\Views\\Cashier\\GetProduct.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-12T11:30:37.059Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "OrderRepository.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\OrderRepository.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Repositories\\OrderRepository.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\OrderRepository.cs",
-              "RelativeToolTip": "SnapShop.Core\\Repositories\\OrderRepository.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAwwCMAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T11:08:07.333Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ProductRepository.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\ProductRepository.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Repositories\\ProductRepository.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\ProductRepository.cs",
-              "RelativeToolTip": "SnapShop.Core\\Repositories\\ProductRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T11:17:58.563Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "IOrderRepository.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\IOrderRepository.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Repositories\\IOrderRepository.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\IOrderRepository.cs",
-              "RelativeToolTip": "SnapShop.Core\\Repositories\\IOrderRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T11:09:32.474Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Order.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Application\\Models\\Order.cs",
-              "RelativeDocumentMoniker": "SnapShop.Application\\Models\\Order.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Application\\Models\\Order.cs",
-              "RelativeToolTip": "SnapShop.Application\\Models\\Order.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBIAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-11T22:42:17.677Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Product.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Application\\Models\\Product.cs",
-              "RelativeDocumentMoniker": "SnapShop.Application\\Models\\Product.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Application\\Models\\Product.cs",
-              "RelativeToolTip": "SnapShop.Application\\Models\\Product.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAQwCoAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T13:38:58.248Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Category.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Application\\Models\\Category.cs",
-              "RelativeDocumentMoniker": "SnapShop.Application\\Models\\Category.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Application\\Models\\Category.cs",
-              "RelativeToolTip": "SnapShop.Application\\Models\\Category.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T13:53:43.416Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "CategoryRepository.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\CategoryRepository.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Repositories\\CategoryRepository.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\CategoryRepository.cs",
-              "RelativeToolTip": "SnapShop.Core\\Repositories\\CategoryRepository.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAIBQwAYAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T13:51:51.996Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "ICategoryRepository.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\ICategoryRepository.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Repositories\\ICategoryRepository.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\ICategoryRepository.cs",
-              "RelativeToolTip": "SnapShop.Core\\Repositories\\ICategoryRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T13:51:37.725Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Controllers\\ProductController.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "SnapShop.Core\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAIBJwDgAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T13:53:13.97Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "CashierServices.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\CashierServices.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Repositories\\CashierServices.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\CashierServices.cs",
-              "RelativeToolTip": "SnapShop.Core\\Repositories\\CashierServices.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAIBQwA4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T13:52:34.524Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "_ViewImports.cshtml",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\_ViewImports.cshtml",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\_ViewImports.cshtml",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\_ViewImports.cshtml",
-              "RelativeToolTip": "SnapShop.Core\\Views\\_ViewImports.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-10T18:35:24.671Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "_ValidationScriptsPartial.cshtml",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-              "RelativeToolTip": "SnapShop.Core\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-10T15:29:08.232Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Controllers\\CategoryController.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Controllers\\CategoryController.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Controllers\\CategoryController.cs",
-              "RelativeToolTip": "SnapShop.Core\\Controllers\\CategoryController.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAkwDIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T13:44:05.114Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "ICashierServices.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\ICashierServices.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Repositories\\ICashierServices.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Repositories\\ICashierServices.cs",
-              "RelativeToolTip": "SnapShop.Core\\Repositories\\ICashierServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T13:52:25.686Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Category\\Index.cshtml",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Category\\Index.cshtml",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Category\\Index.cshtml",
-              "RelativeToolTip": "SnapShop.Core\\Views\\Category\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-04T13:44:32.463Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "ProductsVM.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\ViewModels\\Products\\ProductsVM.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\ViewModels\\Products\\ProductsVM.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\ViewModels\\Products\\ProductsVM.cs",
-              "RelativeToolTip": "SnapShop.Core\\ViewModels\\Products\\ProductsVM.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAgwB8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T13:55:57.131Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "GetProducts.cshtml",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cashier\\GetProducts.cshtml",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Cashier\\GetProducts.cshtml",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cashier\\GetProducts.cshtml",
-              "RelativeToolTip": "SnapShop.Core\\Views\\Cashier\\GetProducts.cshtml",
-              "ViewState": "AgIAABgAAAAAAAAAAADwvxkAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-04T13:55:26.473Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cashier\\Index.cshtml",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Cashier\\Index.cshtml",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cashier\\Index.cshtml",
-              "RelativeToolTip": "SnapShop.Core\\Views\\Cashier\\Index.cshtml",
-              "ViewState": "AgIAAA0AAAAAAAAAAIBJwBAAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-04T13:39:57.361Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "CategoriesVM.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\ViewModels\\Categories\\CategoriesVM.cs",
-              "RelativeDocumentMoniker": "SnapShop.Core\\ViewModels\\Categories\\CategoriesVM.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\ViewModels\\Categories\\CategoriesVM.cs",
-              "RelativeToolTip": "SnapShop.Core\\ViewModels\\Categories\\CategoriesVM.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAA1wBMAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T13:55:43.713Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "EmailSender.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Utility\\EmailSender.cs",
-              "RelativeDocumentMoniker": "SnapShop.Utility\\EmailSender.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Utility\\EmailSender.cs",
-              "RelativeToolTip": "SnapShop.Utility\\EmailSender.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T14:16:06.139Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "StaticDetails.cs",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Utility\\StaticDetails.cs",
-              "RelativeDocumentMoniker": "SnapShop.Utility\\StaticDetails.cs",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Utility\\StaticDetails.cs",
-              "RelativeToolTip": "SnapShop.Utility\\StaticDetails.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T14:15:59.511Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Product\\Index.cshtml",
-              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Product\\Index.cshtml",
-              "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Product\\Index.cshtml",
-              "RelativeToolTip": "SnapShop.Core\\Views\\Product\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-04T13:53:31.577Z"
+              "WhenOpened": "2024-10-15T22:20:52.228Z"
             }
           ]
         }

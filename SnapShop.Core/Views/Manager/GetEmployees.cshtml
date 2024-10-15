@@ -1,54 +1,230 @@
-﻿@model List<IdentityUser>
-
-    @{
-    ViewData["Title"] = "Categories";
-    }
-    
-<div class="d-flex">
-    <div class="me-auto">
-    </div>
-    <div class="d-flex justify-content-center mb-3 position-relative">
-        <input class="txtSearch form-control form-control-sm w-auto ps-5" type="text" name="txtSearch" placeholder="Name" />
-        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ps-2" style="font-size: 1rem; color: #6c757d;"></i>
-    </div>
-</div>
-    @if (Model.Count == 0)
-    {
-    <div class="alert alert-warning text-center" role="alert">
-        There are no categories !!
-    </div>
-    }
-    else
-    {
-    <div class="protable">
-        <div class="table-responsive">
-            <div class="container my-4">
-                <!-- Category Table -->
-                <table class="table table-bordered table-hover">
-                    <thead>
+﻿<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+@model List<SnapShop.Core.ViewModels.Users.UserViewModel>
+@{
+    ViewData["Title"] = "Home";
+}
+<div class="protable">
+    <div class="table-responsive">
+        <div class="container my-4">
+            <table class="table table-bordered table-hover">
+                <thead>
                     <tr>
                         <th>#</th>
                         <th>
-                            Name
+                            Email
+                        </th>
+                        <th>
+                            Role
                         </th>
                         <th>Actions</th>
                     </tr>
-                    </thead>
-                    <tbody id="protbody"> <!-- Added ID here -->
+                </thead>
+                <tbody id="protbody">
                     @{
-                    int sl = 1;
-                    foreach (var item in Model)
-                    {
-                    <tr>
-                        <td>@sl</td>
-                        <td>@item.Email</td> 
-                    </tr>
-                    sl++;
+                        int sl = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@sl</td>
+                                <td>@item.Email</td>
+                                <td>@item.Role</td>
+                                <td>
+                                    <a onclick="LockManager('@item.Id')" class="btn btn-outline-secondary btn-sm" style="cursor: pointer;">Lock <i class="bi bi-pencil-square"></i></a>
+                                    <a onclick="UnlockManager('@item.Id')" class="btn btn-outline-danger btn-sm ms-2" style="cursor: pointer;">Unlock <i class="bi bi-trash"></i></a>
+                                    <a onclick="RemoveManager('@item.Id')" class="btn btn-outline-danger btn-sm ms-2" style="cursor: pointer;">Delete <i class="bi bi-trash"></i></a>
+                                    <a onclick="EditManager('@item.Id')" class="btn btn-outline-secondary btn-sm" style="cursor: pointer;">Edit <i class="bi bi-pencil-square"></i></a>
+                                </td>
+                            </tr>
+                            sl++;
+                        }
                     }
-                    }
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Edit User Modal -->
+<div class="modal fade" id="editProModal" tabindex="-1" aria-labelledby="editProModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProModalLabel">Edit User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mx-3">
+                    <form id="editUserForm" method="post" action="/Manager/EditUser">
+                        <input type="hidden" id="userId" name="userId" />
+                        <div class="row mb-2">
+                            <label for="txtEmail" class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                                <input id="txtEmail" name="email" class="form-control form-control-sm" required>
+                                <div class="invalid-feedback">This Email field is required.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="ddlRole" class="col-sm-3 col-form-label">Role</label>
+                            <div class="col-sm-9">
+                                <select id="ddlRole" name="role" class="form-select form-select-sm" required>
+                                    <option value="" disabled selected>--Select Role--</option>
+                                    @if (ViewBag.Role != null)
+
+                                    {
+
+                                        foreach (var item in ViewBag.Role)
+
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+
+                                    }
+                                </select>
+                                <div class="invalid-feedback">This Role field is required.</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-sm btn-outline-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    }
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        // Search functionality
+        $('.txtSearch').on('input', function () {
+            let searchValue = $(this).val().toLowerCase();
+
+            // Iterate through each row in the table
+            $('#protbody tr').each(function () {
+                let userEmail = $(this).find('td:nth-child(2)').text().toLowerCase();
+                let userRole = $(this).find('td:nth-child(3)').text().toLowerCase();
+
+                if (userEmail.includes(searchValue) || userRole.includes(searchValue)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+
+        // Function to show alerts
+        function showAlert(icon, title) {
+            Swal.fire({
+                position: "top-end",
+                icon: icon,
+                title: title,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+        // Lock User Function
+        window.LockManager = function (userId) {
+            $.ajax({
+                type: "POST",
+                url: "/Manager/LockUser",
+                data: { userId: userId },
+                success: function (response) {
+                    showAlert(response.success ? "success" : "error", response.message);
+                    if (response.success) {
+                        // Optionally refresh the table or data
+                    }
+                },
+                error: function (xhr, status, error) {
+                    handleAjaxError(xhr, status, error);
+                }
+            });
+        };
+
+        // Unlock User Function
+        window.UnlockManager = function (userId) {
+            $.ajax({
+                type: "POST",
+                url: "/Manager/UnlockUser",
+                data: { userId: userId },
+                success: function (response) {
+                    showAlert(response.success ? "success" : "error", response.message);
+                    if (response.success) {
+                        // Optionally refresh the table or data
+                    }
+                },
+                error: function (xhr, status, error) {
+                    handleAjaxError(xhr, status, error);
+                }
+            });
+        };
+
+        // Remove User Function
+        window.RemoveManager = function (userId) {
+            $.ajax({
+                type: "POST",
+                url: "/Manager/RemoveEmployee",
+                data: { userId: userId },
+                success: function (response) {
+                    showAlert(response.success ? "success" : "error", response.message);
+                    if (response.success) {
+                        // Optionally remove the row from the table
+                        $(`#protbody tr:has(td:contains(${userId}))`).remove();
+                        // Auto-refresh the page
+                        location.reload();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    handleAjaxError(xhr, status, error);
+                }
+            });
+        };
+        window.EditManager = function (userId) {
+            // Get current user data (you may want to fetch this from the server)
+            let email = $(`#protbody tr:has(td:contains(${userId})) td:nth-child(2)`).text();
+            let role = $(`#protbody tr:has(td:contains(${userId})) td:nth-child(3)`).text(); // Adjust based on how you manage roles
+
+            $('#userId').val(userId);
+            $('#txtEmail').val(email);
+            $('#ddlRole').val(role);
+
+            // Show the modal
+            $('#editProModal').modal('show');
+        };
+
+        // Edit User Form Submission
+        $('#editUser  Form').on('submit', function (e) {
+            e.preventDefault();
+            const userId = $('#userId').val();
+            const email = $('#txtEmail').val();
+            const role = $('#ddlRole').val();
+            const password = $('#txtPassword').val();
+            const confirmPassword = $('#txtConfirmPassword').val();
+
+            $.ajax({
+                type: "POST",
+                url: "/Manager/EditUser ",
+                data: { userId: userId, email: email, role: role, password: password, confirmPassword: confirmPassword },
+                success: function (response) {
+                    showAlert(response.success ? "success" : "error", response.message);
+                    if (response.success) {
+                        // Optionally refresh the table or update the row with new data
+                        let row = $(`#protbody tr:has(td:contains(${userId}))`);
+                        row.find('td:nth-child(2)').text(email);
+                        row.find('td:nth-child(3)').text(role);
+                        $('#editProModal').modal('hide'); // Hide the modal
+                    }
+                },
+                error: function (xhr, status, error) {
+                    handleAjaxError(xhr, status, error);
+                }
+            });
+        });
+
+        // Handle AJAX errors
+        function handleAjaxError(xhr, status, error) {
+            console.error("Error:", error);
+            showAlert("error", "An error occurred while processing your request.");
+        }
+    });
+</script>

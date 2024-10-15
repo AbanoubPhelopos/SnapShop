@@ -1,0 +1,76 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="d-flex">
+    <div class="me-auto"></div>
+    <div class="d-flex justify-content-center mb-3 position-relative">
+        <input class="txtSearch form-control form-control-sm w-auto ps-5" type="text" name="txtSearch" placeholder="Name or Barcode" />
+        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ps-2" style="font-size: 1rem; color: #6c757d;"></i>
+    </div>
+</div>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-warning text-center" role="alert">
+        There are no products !!
+    </div>
+}
+else
+{
+    <div class="protable">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover w-100">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Barcode</th>
+                    </tr>
+                </thead>
+                <tbody id="protbody">
+                    @{
+                        int sl = 1;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@sl</td>
+                            <td>@item.Name</td>
+                            <td>@item.Category?.Name</td>
+                            <td>@item.Price</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Barcode</td>
+                        </tr>
+                        sl++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        $('.txtSearch').on('input', function () {
+            let searchValue = $(this).val().toLowerCase();
+
+            // Iterate through each row in the table
+            $('#protbody tr').each(function () {
+                let name = $(this).find('td:nth-child(2)').text().toLowerCase().trim();
+                let barcode = $(this).find('td:nth-child(6)').text().toLowerCase().trim();
+
+                // Check if the search value matches the name or barcode
+                if (name.includes(searchValue) || barcode.includes(searchValue)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    </script>
+}
