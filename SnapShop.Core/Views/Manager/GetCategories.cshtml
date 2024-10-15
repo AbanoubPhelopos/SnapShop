@@ -1,0 +1,75 @@
+﻿@model List<Category>
+
+    @{
+    ViewData["Title"] = "Categories";
+    }
+    
+<div class="d-flex">
+    <div class="me-auto">
+    </div>
+    <div class="d-flex justify-content-center mb-3 position-relative">
+        <input class="txtSearch form-control form-control-sm w-auto ps-5" type="text" name="txtSearch" placeholder="Name" />
+        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ps-2" style="font-size: 1rem; color: #6c757d;"></i>
+    </div>
+</div>
+    @if (Model.Count == 0)
+    {
+    <div class="alert alert-warning text-center" role="alert">
+        There are no categories !!
+    </div>
+    }
+    else
+    {
+    <div class="protable">
+        <div class="table-responsive">
+            <div class="container my-4">
+                <!-- Category Table -->
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            Name
+                        </th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="protbody"> <!-- Added ID here -->
+                    @{
+                    int sl = 1;
+                    foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@sl</td>
+                        <td>@item.Name</td> 
+                    </tr>
+                    sl++;
+                    }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    }
+
+    @section Scripts {
+        <script type="text/javascript">
+        $('.txtSearch').on('input', function () {
+            let searchValue = $(this).val().toLowerCase();
+
+            // Iterate through each row in the table
+            $('#protbody tr').each(function () {
+                // Adjust the index if necessary to match your table structure
+                let categoryName = $(this).find('td:nth-child(2)').text().toLowerCase().trim();
+
+                // Check if the search value matches the category name
+                if (categoryName.includes(searchValue)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+        </script>
+    }
