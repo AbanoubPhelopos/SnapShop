@@ -65,6 +65,9 @@
                     <a class="nav-link text-white" id="register" asp-area="Identity" asp-page="/Account/Register">Add New Employee</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link text-white" id="register"  asp-controller="Manager" asp-action="GetEmployees">Employees</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-white" id="register"  asp-controller="Manager" asp-action="GetCategories">Categories</a>
                 </li>
                 }else if (User.IsInRole(StaticDetails.RoleUserCashier))
