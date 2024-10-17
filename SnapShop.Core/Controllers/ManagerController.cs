@@ -2,8 +2,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SnapShop.Application.Data;
+using SnapShop.Core.Repositories;
+using SnapShop.Core.ViewModels.Categories;
 using SnapShop.Core.ViewModels.Users;
 using SnapShop.Utility;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SnapShop.Core.Controllers;
 
@@ -58,29 +61,60 @@ public class ManagerController(ApplicationDbContext context,UserManager<Identity
         List<Product> products = productRepository.GetProducts().ToList();
         return View(products);
     }
-    [HttpPost]
-    public async Task<IActionResult> EditUser(string userId, string email, string role, string password, string confirmPassword)
+
+    [HttpGet]
+    public async Task<IActionResult> Edit(string id)
     {
-        var user = await userManager.FindByIdAsync(userId);
-        if (user == null)
+        IdentityUser _user = await userManager.FindByIdAsync(id);
+        if (_user == null)
         {
-            return Json(new { success = false, message = "User  not found." });
+            return NotFound();
         }
+        var Roles = await userManager.GetRolesAsync(_user);
+        var _role = Roles.FirstOrDefault();
 
-        user.Email = email;
-
-        // Update the user's role
-        var roles = await userManager.GetRolesAsync(user);
-        await userManager.RemoveFromRolesAsync(user, roles);
-        await userManager.AddToRoleAsync(user, role);
-
-        // Update the user's password
-        var token = await userManager.GeneratePasswordResetTokenAsync(user);
-        await userManager.ResetPasswordAsync(user, token, password);
-
-        return Json(new { success = true, message = "User  updated successfully." });
+        return Json( new {success = true ,user = _user , role = _role});
     }
+    [HttpPost]
+    public async Task<IActionResult> Update([FromForm] EditUserViewModel Model)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                IdentityUser user = await userManager.FindByIdAsync(Model.Id);
+                if (user != null)
+                {
+                    var isUserInRole = await userManager.IsInRoleAsync(user, Model.role);
+                    if (!isUserInRole)
+                    {
+                        var roles = await userManager.GetRolesAsync(user);
+                        await userManager.RemoveFromRolesAsync(user, roles);
+                        var result = await userManager.AddToRoleAsync(user, Model.role);
+                        if (!result.Succeeded)
+                        {
+                            return BadRequest("Failed to add user to role: " + string.Join(", ", result.Errors.Select(e => e.Description)));
+                        }
+                        return Json(new { success = true, message = "Record edited successfully!" });
+                    }
 
+                    return BadRequest( new { message = "User is already in this role." });
+
+                }
+                return NotFound();
+
+            }
+            else
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                return Json(new { success = false, message = "Validation failed.", errors });
+            }
+        }
+        catch (Exception ex)
+        {
+            return Json(new { success = false, message = "An error occurred: " + ex.Message });
+        }
+    }
 
     [HttpPost]
     public async Task<IActionResult> LockUser(string userId)

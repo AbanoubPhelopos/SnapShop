@@ -1,8 +1,17 @@
-﻿<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+﻿@using SnapShop.Utility; 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 @model List<SnapShop.Core.ViewModels.Users.UserViewModel>
 @{
     ViewData["Title"] = "Home";
 }
+
+<div class="d-flex position-relative">
+    <div class="d-flex justify-content-center mb-3 position-relative">
+        <input class="txtSearch form-control form-control-sm w-auto ps-5" type="text" name="txtSearch" placeholder="Email" />
+        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ps-2" style="font-size: 1rem; color: #6c757d;"></i>
+    </div>
+</div>
+
 <div class="protable">
     <div class="table-responsive">
         <div class="container my-4">
@@ -29,8 +38,8 @@
                                 <td>@item.Email</td>
                                 <td>@item.Role</td>
                                 <td>
-                                    <a onclick="LockManager('@item.Id')" class="btn btn-outline-secondary btn-sm" style="cursor: pointer;">Lock <i class="bi bi-pencil-square"></i></a>
-                                    <a onclick="UnlockManager('@item.Id')" class="btn btn-outline-danger btn-sm ms-2" style="cursor: pointer;">Unlock <i class="bi bi-trash"></i></a>
+                                    <a onclick="LockManager('@item.Id')" class="btn btn-outline-secondary btn-sm" style="cursor: pointer;">Lock <i class="bi bi-lock"></i></a>
+                                    <a onclick="UnlockManager('@item.Id')" class="btn btn-outline-danger btn-sm ms-2" style="cursor: pointer;">Unlock <i class="bi bi-unlock"></i></a>
                                     <a onclick="RemoveManager('@item.Id')" class="btn btn-outline-danger btn-sm ms-2" style="cursor: pointer;">Delete <i class="bi bi-trash"></i></a>
                                     <a onclick="EditManager('@item.Id')" class="btn btn-outline-secondary btn-sm" style="cursor: pointer;">Edit <i class="bi bi-pencil-square"></i></a>
                                 </td>
@@ -53,178 +62,161 @@
             </div>
             <div class="modal-body">
                 <div class="mx-3">
-                    <form id="editUserForm" method="post" action="/Manager/EditUser">
-                        <input type="hidden" id="userId" name="userId" />
-                        <div class="row mb-2">
-                            <label for="txtEmail" class="col-sm-3 col-form-label">Email</label>
-                            <div class="col-sm-9">
-                                <input id="txtEmail" name="email" class="form-control form-control-sm" required>
-                                <div class="invalid-feedback">This Email field is required.</div>
-                            </div>
-                        </div>
+                    <input type="hidden" id="userId"/>
                         <div class="row mb-2">
                             <label for="ddlRole" class="col-sm-3 col-form-label">Role</label>
                             <div class="col-sm-9">
                                 <select id="ddlRole" name="role" class="form-select form-select-sm" required>
-                                    <option value="" disabled selected>--Select Role--</option>
-                                    @if (ViewBag.Role != null)
-
-                                    {
-
-                                        foreach (var item in ViewBag.Role)
-
-                                        {
-                                            <option value="@item.Value">@item.Text</option>
-                                        }
-
-                                    }
+                                    <option value=Cashier>Cashier</option>
+                                    <option value=Managar>Managar</option>
+                                    <option value=Storekeeper>Storekeeper</option>
                                 </select>
                                 <div class="invalid-feedback">This Role field is required.</div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-sm btn-outline-primary">Save</button>
+                        <button type="submit" class="btn btn-sm btn-outline-primary" onclick="UpdateManager()">Save</button>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-<script>
-    $(document).ready(function () {
-        // Search functionality
+@section Scripts {
+  <script type="text/javascript">
         $('.txtSearch').on('input', function () {
             let searchValue = $(this).val().toLowerCase();
 
             // Iterate through each row in the table
             $('#protbody tr').each(function () {
-                let userEmail = $(this).find('td:nth-child(2)').text().toLowerCase();
-                let userRole = $(this).find('td:nth-child(3)').text().toLowerCase();
+                let email = $(this).find('td:nth-child(2)').text().toLowerCase().trim();
 
-                if (userEmail.includes(searchValue) || userRole.includes(searchValue)) {
+                // Check if the search value matches the email
+                if (email.includes(searchValue)) {
                     $(this).show();
                 } else {
                     $(this).hide();
                 }
             });
         });
+     // Function to show alerts
+     function showAlert(icon, title) {
+         Swal.fire({
+             position: "top-end",
+             icon: icon,
+             title: title,
+             showConfirmButton: false,
+             timer: 1500
+         });
+     }
 
-        // Function to show alerts
-        function showAlert(icon, title) {
-            Swal.fire({
-                position: "top-end",
-                icon: icon,
-                title: title,
-                showConfirmButton: false,
-                timer: 1500
-            });
-        }
+     // Lock User Function
+     window.LockManager = function (userId) {
+         $.ajax({
+             type: "POST",
+             url: "/Manager/LockUser",
+             data: { userId: userId },
+             success: function (response) {
+                 showAlert(response.success ? "success" : "error", response.message);
+                 if (response.success) {
+                     // Optionally refresh the table or data
+                 }
+             },
+             error: function (xhr, status, error) {
+                 handleAjaxError(xhr, status, error);
+             }
+         });
+     };
 
-        // Lock User Function
-        window.LockManager = function (userId) {
+     // Unlock User Function
+     window.UnlockManager = function (userId) {
+         $.ajax({
+             type: "POST",
+             url: "/Manager/UnlockUser",
+             data: { userId: userId },
+             success: function (response) {
+                 showAlert(response.success ? "success" : "error", response.message);
+                 if (response.success) {
+                     // Optionally refresh the table or data
+                 }
+             },
+             error: function (xhr, status, error) {
+                 handleAjaxError(xhr, status, error);
+             }
+         });
+     };
+
+     // Remove User Function
+     window.RemoveManager = function (userId) {
+         $.ajax({
+             type: "POST",
+             url: "/Manager/RemoveEmployee",
+             data: { userId: userId },
+             success: function (response) {
+                 showAlert(response.success ? "success" : "error", response.message);
+                 if (response.success) {
+                     // Optionally remove the row from the table
+                     $(`#protbody tr:has(td:contains(${userId}))`).remove();
+                     // Auto-refresh the page
+                     location.reload();
+                 }
+             },
+             error: function (xhr, status, error) {
+                 handleAjaxError(xhr, status, error);
+             }
+         });
+     };
+        function EditManager(userId) {
             $.ajax({
-                type: "POST",
-                url: "/Manager/LockUser",
-                data: { userId: userId },
+                type: "GET",
+                url: "/Manager/Edit?id=" + userId,
+                dataType: "json",
                 success: function (response) {
-                    showAlert(response.success ? "success" : "error", response.message);
-                    if (response.success) {
-                        // Optionally refresh the table or data
-                    }
+                    // Set the user ID and role for editing
+                    $('#userId').val(userId)
+                    $('#ddlRole').val(response.role); // Set the selected role
+                    // Show the modal
+                    $('#editProModal').modal('show');
                 },
                 error: function (xhr, status, error) {
-                    handleAjaxError(xhr, status, error);
+                    console.error("Error:", error);
                 }
             });
         };
 
-        // Unlock User Function
-        window.UnlockManager = function (userId) {
-            $.ajax({
-                type: "POST",
-                url: "/Manager/UnlockUser",
-                data: { userId: userId },
-                success: function (response) {
-                    showAlert(response.success ? "success" : "error", response.message);
-                    if (response.success) {
-                        // Optionally refresh the table or data
-                    }
-                },
-                error: function (xhr, status, error) {
-                    handleAjaxError(xhr, status, error);
-                }
-            });
-        };
+        // Function to Update User
+        function UpdateManager() {
+            const userId = $('#userId').val(); // Get user ID from the modal
+            const role = $('#ddlRole').val(); // Get selected role from the dropdown
 
-        // Remove User Function
-        window.RemoveManager = function (userId) {
-            $.ajax({
-                type: "POST",
-                url: "/Manager/RemoveEmployee",
-                data: { userId: userId },
-                success: function (response) {
-                    showAlert(response.success ? "success" : "error", response.message);
-                    if (response.success) {
-                        // Optionally remove the row from the table
-                        $(`#protbody tr:has(td:contains(${userId}))`).remove();
-                        // Auto-refresh the page
-                        location.reload();
-                    }
-                },
-                error: function (xhr, status, error) {
-                    handleAjaxError(xhr, status, error);
-                }
-            });
-        };
-        window.EditManager = function (userId) {
-            // Get current user data (you may want to fetch this from the server)
-            let email = $(`#protbody tr:has(td:contains(${userId})) td:nth-child(2)`).text();
-            let role = $(`#protbody tr:has(td:contains(${userId})) td:nth-child(3)`).text(); // Adjust based on how you manage roles
-
-            $('#userId').val(userId);
-            $('#txtEmail').val(email);
-            $('#ddlRole').val(role);
-
-            // Show the modal
-            $('#editProModal').modal('show');
-        };
-
-        // Edit User Form Submission
-        $('#editUser  Form').on('submit', function (e) {
-            e.preventDefault();
-            const userId = $('#userId').val();
-            const email = $('#txtEmail').val();
-            const role = $('#ddlRole').val();
-            const password = $('#txtPassword').val();
-            const confirmPassword = $('#txtConfirmPassword').val();
+            const data = {
+                Id: userId,
+                Role: role
+            };
 
             $.ajax({
                 type: "POST",
-                url: "/Manager/EditUser ",
-                data: { userId: userId, email: email, role: role, password: password, confirmPassword: confirmPassword },
+                url: "/Manager/Update", 
+                data: data, 
                 success: function (response) {
                     showAlert(response.success ? "success" : "error", response.message);
                     if (response.success) {
-                        // Optionally refresh the table or update the row with new data
                         let row = $(`#protbody tr:has(td:contains(${userId}))`);
-                        row.find('td:nth-child(2)').text(email);
-                        row.find('td:nth-child(3)').text(role);
-                        $('#editProModal').modal('hide'); // Hide the modal
+                        row.find('td:nth-child(3)').text(role); 
+                        $('#editProModal').modal('hide'); 
                     }
                 },
                 error: function (xhr, status, error) {
                     handleAjaxError(xhr, status, error);
                 }
             });
-        });
+        };
 
         // Handle AJAX errors
         function handleAjaxError(xhr, status, error) {
             console.error("Error:", error);
             showAlert("error", "An error occurred while processing your request.");
         }
-    });
-</script>
+  </script>
+}
