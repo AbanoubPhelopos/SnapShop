@@ -43,7 +43,7 @@ namespace SnapShop.Core.Controllers
                 return Json(new { success = false, message = "An error occurred: " + ex.Message });
             }
         }
-        [HttpPost]
+        [HttpGet]
 
         public async Task<IActionResult> Edit(int id)
         {
