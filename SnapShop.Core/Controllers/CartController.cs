@@ -252,7 +252,7 @@ namespace SnapShop.Core.Controllers
 			}
 
 			// Create a new Stripe Checkout session
-			var domain = "https://localhost:7020/"; // Update with your domain
+			var domain = "http://localhost:5081/"; // Update with your domain
 			var options = new SessionCreateOptions
 			{
 				SuccessUrl = $"{domain}Cart/Confirmation",
