@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "D:\\source\\repos\\SnapShop\\SnapShop\\",
   "Documents": [
     {
@@ -41,6 +42,21 @@
     {
       "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\manager\\getcategories.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\manager\\getcategories.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+=======
+  "WorkspaceRootPath": "F:\\My_GitHub\\SnapShop\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|f:\\my_github\\snapshop\\snapshop.core\\views\\manager\\getemployees.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\manager\\getemployees.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|f:\\my_github\\snapshop\\snapshop.core\\controllers\\managercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\controllers\\managercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|f:\\my_github\\snapshop\\snapshop.core\\views\\category\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\category\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+>>>>>>> f1573208bc255535cde617ff7cb1cebca01944be
     }
   ],
   "DocumentGroupContainers": [
@@ -50,6 +66,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< HEAD
           "SelectedChildIndex": 6,
           "Children": [
             {
@@ -178,8 +195,55 @@
               "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Manager\\GetCategories.cshtml",
               "RelativeToolTip": "SnapShop.Core\\Views\\Manager\\GetCategories.cshtml",
               "ViewState": "AgIAABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+=======
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "F:\\My_GitHub\\SnapShop\\SnapShop.Core\\Views\\Category\\Index.cshtml",
+              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Category\\Index.cshtml",
+              "ToolTip": "F:\\My_GitHub\\SnapShop\\SnapShop.Core\\Views\\Category\\Index.cshtml",
+              "RelativeToolTip": "SnapShop.Core\\Views\\Category\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-15T22:20:52.228Z"
+              "WhenOpened": "2024-10-16T17:30:46.015Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GetEmployees.cshtml",
+              "DocumentMoniker": "F:\\My_GitHub\\SnapShop\\SnapShop.Core\\Views\\Manager\\GetEmployees.cshtml",
+              "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Manager\\GetEmployees.cshtml",
+              "ToolTip": "F:\\My_GitHub\\SnapShop\\SnapShop.Core\\Views\\Manager\\GetEmployees.cshtml",
+              "RelativeToolTip": "SnapShop.Core\\Views\\Manager\\GetEmployees.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAAgAAAA",
+>>>>>>> f1573208bc255535cde617ff7cb1cebca01944be
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-15T20:22:10.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ManagerController.cs",
+              "DocumentMoniker": "F:\\My_GitHub\\SnapShop\\SnapShop.Core\\Controllers\\ManagerController.cs",
+              "RelativeDocumentMoniker": "SnapShop.Core\\Controllers\\ManagerController.cs",
+              "ToolTip": "F:\\My_GitHub\\SnapShop\\SnapShop.Core\\Controllers\\ManagerController.cs",
+              "RelativeToolTip": "SnapShop.Core\\Controllers\\ManagerController.cs",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAcwFIAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T21:02:42.699Z",
+              "EditorCaption": ""
             }
           ]
         }
