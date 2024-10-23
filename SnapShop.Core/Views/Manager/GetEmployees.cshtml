@@ -1,6 +1,6 @@
 ﻿@using SnapShop.Utility; 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-@model List<SnapShop.Core.ViewModels.Users.UserViewModel>
+@model List<SnapShop.Application.ViewModel.UserVM>
 @{
     ViewData["Title"] = "Home";
 }
@@ -12,46 +12,57 @@
     </div>
 </div>
 
-<div class="protable">
-    <div class="table-responsive">
-        <div class="container my-4">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>
-                            Email
-                        </th>
-                        <th>
-                            Role
-                        </th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="protbody">
-                    @{
-                        int sl = 1;
-                        foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>@sl</td>
-                                <td>@item.Email</td>
-                                <td>@item.Role</td>
-                                <td>
-                                    <a onclick="LockManager('@item.Id')" class="btn btn-outline-secondary btn-sm" style="cursor: pointer;">Lock <i class="bi bi-lock"></i></a>
-                                    <a onclick="UnlockManager('@item.Id')" class="btn btn-outline-danger btn-sm ms-2" style="cursor: pointer;">Unlock <i class="bi bi-unlock"></i></a>
-                                    <a onclick="RemoveManager('@item.Id')" class="btn btn-outline-danger btn-sm ms-2" style="cursor: pointer;">Delete <i class="bi bi-trash"></i></a>
-                                    <a onclick="EditManager('@item.Id')" class="btn btn-outline-secondary btn-sm" style="cursor: pointer;">Edit <i class="bi bi-pencil-square"></i></a>
-                                </td>
-                            </tr>
-                            sl++;
-                        }
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="protbody">
+        @{
+        int sl = 1;
+        foreach (var item in Model)
+        {
+        <tr>
+            <td>@sl</td>
+            <td>@item.Email</td>
+            <td>@item.Role</td>
+            <td>
+                <!-- Lock/Unlock button -->
+                <a id="lockUnlockBtn-@item.Id"
+                   onclick="toggleLockManager('@item.Id', @item.IsLocked.ToString().ToLower())"
+                   class="btn @(item.IsLocked ? "btn-outline-danger" : "btn-outline-success") btn-sm"
+                   style="cursor: pointer;">
+                    @(item.IsLocked ? "Unlock" : "Lock")
+                    <i class="bi @(item.IsLocked ? "bi-unlock" : "bi-lock")"></i>
+                </a>
+
+                <!-- Delete button -->
+                <a onclick="RemoveManager('@item.Id')"
+                   class="btn btn-outline-danger btn-sm ms-2"
+                   style="cursor: pointer;">
+                    Delete <i class="bi bi-trash"></i>
+                </a>
+
+                <!-- Edit button -->
+                <a onclick="EditManager('@item.Id')"
+                   class="btn btn-outline-secondary btn-sm"
+                   style="cursor: pointer;">
+                    Edit <i class="bi bi-pencil-square"></i>
+                </a>
+            </td>
+        </tr>
+        sl++;
+        }
+        }
+        </tbody>
+    </table>
 </div>
+
 <!-- Edit User Modal -->
 <div class="modal fade" id="editProModal" tabindex="-1" aria-labelledby="editProModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -84,7 +95,7 @@
 </div>
 
 @section Scripts {
-  <script type="text/javascript">
+    <script type="text/javascript">
         $('.txtSearch').on('input', function () {
             let searchValue = $(this).val().toLowerCase();
 
@@ -111,41 +122,41 @@
          });
      }
 
-     // Lock User Function
-     window.LockManager = function (userId) {
-         $.ajax({
-             type: "POST",
-             url: "/Manager/LockUser",
-             data: { userId: userId },
-             success: function (response) {
-                 showAlert(response.success ? "success" : "error", response.message);
-                 if (response.success) {
-                     // Optionally refresh the table or data
-                 }
-             },
-             error: function (xhr, status, error) {
-                 handleAjaxError(xhr, status, error);
-             }
-         });
-     };
+        // Toggle Lock/Unlock User Function
+        window.toggleLockManager = function (userId, isLocked) {
+            $.ajax({
+                type: "POST",
+                url: "/Manager/ToggleLockUser",
+                data: { userId: userId },
+                success: function (response) {
+                    if (response.success) {
+                        // Get the button element
+                        const button = $(`#lockUnlockBtn-${userId}`);
+                        const newIsLocked = response.isLocked;  // Use the response to determine the new state
 
-     // Unlock User Function
-     window.UnlockManager = function (userId) {
-         $.ajax({
-             type: "POST",
-             url: "/Manager/UnlockUser",
-             data: { userId: userId },
-             success: function (response) {
-                 showAlert(response.success ? "success" : "error", response.message);
-                 if (response.success) {
-                     // Optionally refresh the table or data
-                 }
-             },
-             error: function (xhr, status, error) {
-                 handleAjaxError(xhr, status, error);
-             }
-         });
-     };
+                        // Update the button text, icon, and class based on the lock state
+                        if (newIsLocked) {
+                            button.html('Unlock <i class="bi bi-unlock"></i>');
+                            button.removeClass('btn-success').addClass('btn-danger');  // Change color to indicate locked state
+                            button.attr('onclick', `toggleLockManager('${userId}', true)`);
+                        } else {
+                            button.html('Lock <i class="bi bi-lock"></i>');
+                            button.removeClass('btn-danger').addClass('btn-success');  // Change color to indicate unlocked state
+                            button.attr('onclick', `toggleLockManager('${userId}', false)`);
+                        }
+
+                        // Show success alert
+                        showAlert('success', response.message);
+                    } else {
+                        showAlert('error', response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                    showAlert('error', 'An error occurred while toggling the lock status.');
+                }
+            });
+        };
 
      // Remove User Function
      window.RemoveManager = function (userId) {
