@@ -137,11 +137,11 @@
                         // Update the button text, icon, and class based on the lock state
                         if (newIsLocked) {
                             button.html('Unlock <i class="bi bi-unlock"></i>');
-                            button.removeClass('btn-success').addClass('btn-danger');  // Change color to indicate locked state
+                            button.removeClass('btn-outline-success').addClass('btn-outline-danger');  // Change color to indicate locked state
                             button.attr('onclick', `toggleLockManager('${userId}', true)`);
                         } else {
                             button.html('Lock <i class="bi bi-lock"></i>');
-                            button.removeClass('btn-danger').addClass('btn-success');  // Change color to indicate unlocked state
+                            button.removeClass('btn-outline-danger').addClass('btn-outline-success');  // Change color to indicate unlocked state
                             button.attr('onclick', `toggleLockManager('${userId}', false)`);
                         }
 
