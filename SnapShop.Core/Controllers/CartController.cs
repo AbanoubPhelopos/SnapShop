@@ -9,7 +9,7 @@ using Stripe.Checkout;
 
 namespace SnapShop.Core.Controllers
 {
-    [Authorize(Roles = StaticDetails.RoleUserCashier)]
+	[Authorize(Roles = StaticDetails.RoleUserCashier + "," + StaticDetails.RoleUserManager)]
     public class CartController : Controller
     {
         private readonly ICategoryRepository _categoryRepository;
@@ -252,7 +252,8 @@ namespace SnapShop.Core.Controllers
 			}
 
 			// Create a new Stripe Checkout session
-			var domain = "https://snapshop2024.azurewebsites.net/";
+			var domain = "http://localhost:5081/";
+			//var domain = "https://snapshop2024.azurewebsites.net/";
 			var options = new SessionCreateOptions
 			{
 				SuccessUrl = $"{domain}Cart/Confirmation",
