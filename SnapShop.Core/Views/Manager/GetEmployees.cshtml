@@ -215,7 +215,8 @@
                     if (response.success) {
                         let row = $(`#protbody tr:has(td:contains(${userId}))`);
                         row.find('td:nth-child(3)').text(role); 
-                        $('#editProModal').modal('hide'); 
+                        $('#editProModal').modal('hide');
+                        location.reload();
                     }
                 },
                 error: function (xhr, status, error) {
