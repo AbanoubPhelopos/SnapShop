@@ -39,14 +39,26 @@
         {
         <tr>
             <td class="text-center">
-                <a asp-controller="Cashier" asp-action="GetProduct" asp-route-id="@item.ProductId">
+                @if (User.IsInRole(StaticDetails.RoleUserCashier))
+                {
+                    <a asp-controller="Cashier" asp-action="GetProduct" asp-route-id="@item.ProductId">
+                        <img src="/Images/Products/@item.Image"
+                             class="img-thumbnail"
+                             alt="@item.Product.Name"
+                             style="width: 100px; height: 100px; object-fit: cover;"
+                             data-toggle="tooltip"
+                             title="View details for @item.Product.Name">
+                    </a>
+                }else if (User.IsInRole(StaticDetails.RoleUserManager))
+                {
                     <img src="/Images/Products/@item.Image"
                          class="img-thumbnail"
                          alt="@item.Product.Name"
                          style="width: 100px; height: 100px; object-fit: cover;"
                          data-toggle="tooltip"
                          title="View details for @item.Product.Name">
-                </a>
+                }
+                
             </td>
             <td>@item.Product.Name</td>
             <td class="text-center">@item.Quantity</td>
