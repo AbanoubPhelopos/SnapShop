@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SnapShop.Application.Models;
-using SnapShop.Core.Repositories;
 using SnapShop.Core.ViewModels.Cart;
 using SnapShop.Utility;
 using Stripe.Checkout;
@@ -170,27 +166,27 @@ namespace SnapShop.Core.Controllers
         [HttpPost]
         public IActionResult DeleteOrder(int orderId)
         {
-            var order = _orderRepository.GetOrderById(orderId); // Fetch the order using repository
+	        Console.WriteLine("DeleteOrder called with Order ID: " + orderId); // Debug line
 
-            if (order == null)
-            {
-                TempData["ErrorMessage"] = "Order not found.";
-                return RedirectToAction("GetAllOrders"); // Redirect to order list or any appropriate view
-            }
+	        var order = _orderRepository.GetOrderById(orderId);
 
-            try
-            {
-                _orderRepository.DeleteOrder(orderId); // Delete the order
-                TempData["SuccessMessage"] = "Order deleted successfully!";
-            }
-            catch (Exception)
-            {
-                // Log the error if needed
-                TempData["ErrorMessage"] = "An error occurred while deleting the order.";
-            }
+	        if (order == null)
+	        {
+		        return Json(new { success = false, message = "Order not found." });
+	        }
 
-            return RedirectToAction("GetAllOrders"); // Redirect after deletion
+	        try
+	        {
+		        _orderRepository.DeleteOrder(orderId);
+		        return Json(new { success = true, message = "Order deleted successfully!" });
+	        }
+	        catch (Exception ex)
+	        {
+		        Console.WriteLine("Error while deleting order: " + ex.Message); // Debug line
+		        return Json(new { success = false, message = "An error occurred while deleting the order." });
+	        }
         }
+
 		public IActionResult Confirmation()
 		{
 			var cartItems = _cartRepository.GetCartItems(); // Fetch cart items for confirmation
@@ -275,8 +271,7 @@ namespace SnapShop.Core.Controllers
 			}
 
 			// Create a new Stripe Checkout session
-			var domain = "http://localhost:5081/";
-			//var domain = "https://snapshop2024.azurewebsites.net/";
+			var domain = "http://localhost:5081/"; // Update with your domain
 			var options = new SessionCreateOptions
 			{
 				SuccessUrl = $"{domain}Cart/Confirmation",

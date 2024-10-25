@@ -36,7 +36,7 @@
 
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1 justify-content-end">
-                  
+
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
@@ -69,22 +69,25 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" id="register"  asp-controller="Manager" asp-action="GetCategories">Categories</a>
-                </li>  
+                </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" id="register"  asp-controller="Manager" asp-action="GetProducts">Products</a>
+                </li>
+                <a class="nav-link text-white" asp-controller="Cart" asp-action="GetAllOrders">
+                    <i class="bi bi-list-check"></i> Order List
+                </a>
+                }else if (User.IsInRole(StaticDetails.RoleUserCashier))
+                {
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-controller="Cart" asp-action="ViewCart">
+                        <i class="bi bi-cart"></i> Cart
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" asp-controller="Cart" asp-action="GetAllOrders">
                         <i class="bi bi-list-check"></i> Order List
                     </a>
                 </li>
-                }else if (User.IsInRole(StaticDetails.RoleUserCashier))
-                {
-                    <li class="nav-item">
-                        <a class="nav-link text-white" asp-controller="Cart" asp-action="ViewCart">
-                            <i class="bi bi-cart"></i> Cart
-                        </a>
-                    </li>
                 }
             </ul>
         </div>
@@ -120,4 +123,3 @@ else
 <script src="https://js.stripe.com/v3/"></script>
 </body>
 </html>
-

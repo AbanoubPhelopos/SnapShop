@@ -2,18 +2,22 @@
 
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success" role="alert">
-        @TempData["SuccessMessage"]
-    </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        showAlert("success", "@TempData["SuccessMessage"]");
+    });
+</script>
 }
 else if (TempData["ErrorMessage"] != null)
 {
-    <div class="alert alert-danger" role="alert">
-        @TempData["ErrorMessage"]
-    </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        showAlert("error", "@TempData["ErrorMessage"]");
+    });
+</script>
 }
 
-<form method="post" asp-controller="Cart" asp-action="AddToCart">
+<form method="post" asp-controller="Cart" asp-action="AddToCart" id="addToCartForm">
     <div class="card shadow border-0 mt-4">
         <div class="card-header bg-secondary bg-gradient text-light py-4 text-center">
             <h3 class="text-white text-uppercase">@Model.Name</h3>
@@ -62,3 +66,44 @@ else if (TempData["ErrorMessage"] != null)
         </div>
     </div>
 </form>
+
+@section Scripts {
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Define the showAlert function
+    function showAlert(icon, title) {
+        Swal.fire({
+            position: "top-end",
+            icon: icon,
+            title: title,
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+
+    // Handle form submission with AJAX
+    document.getElementById("addToCartForm").addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent the default form submission
+
+        // Get form data
+        const formData = new FormData(this);
+
+        // Perform the AJAX request
+        fetch(this.action, {
+            method: "POST",
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert("success", "Product added to cart successfully!");
+                } else {
+                    showAlert("error", data.message || "An error occurred while adding to the cart.");
+                }
+            })
+            .catch(error => {
+                showAlert("error", "An unexpected error occurred.");
+            });
+    });
+</script>
+}
