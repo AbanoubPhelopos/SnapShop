@@ -15,7 +15,7 @@
     <div class="card-body">
         <p class="card-text lead">
             <strong>Order Date:</strong> @Model.OrderDate.ToString("f")<br />
-            <strong>Total Amount:</strong> <span class="text-success">@Model.TotalAmount.ToString("C")</span>
+            <strong>Total Amount:</strong> <span class="text-success">@Model.TotalAmount  $</span>
         </p>
     </div>
 </div>
@@ -49,8 +49,8 @@
             </td>
             <td>@item.Product.Name</td>
             <td class="text-center">@item.Quantity</td>
-            <td class="text-center">@item.Product.Price.ToString("C")</td>
-            <td class="text-center font-weight-bold text-success">@item.TotalPrice.ToString("C")</td>
+            <td class="text-center">@item.Product.Price  $</td>
+            <td class="text-center font-weight-bold text-success">@item.TotalPrice  $</td>
         </tr>
         }
         </tbody>

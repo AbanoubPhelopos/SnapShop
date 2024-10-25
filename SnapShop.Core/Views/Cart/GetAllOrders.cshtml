@@ -53,7 +53,7 @@ ViewData["Title"] = "Get All Orders";
                 <tr onmouseover="this.style.backgroundColor='#f1f3f4';" onmouseout="this.style.backgroundColor='';">
                     <td>@order.OrderId</td>
                     <td>@order.OrderDate.ToString("f")</td>
-                    <td>@order.TotalAmount.ToString("C")</td>
+                    <td>@order.TotalAmount  $</td>
                     <td class="text-center">
                         <!-- Details Button -->
                         <a asp-action="OrderDetails" asp-route-id="@order.OrderId" class="btn btn-outline-info btn-sm me-2">

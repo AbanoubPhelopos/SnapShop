@@ -30,8 +30,8 @@
             <tr>
                 <td>@item.Product.Name</td>
                 <td>@item.Quantity</td>
-                <td>@item.Product.Price.ToString("C")</td>
-                <td>@item.TotalPrice.ToString("C")</td>
+                <td>@item.Product.Price  $</td>
+                <td>@item.TotalPrice  $</td>
             </tr>
             <!-- Hidden fields to submit cart items -->
             <input type="hidden" name="CartItems[@Model.CartItems.IndexOf(item)].CartItemId" value="@item.CartItemId" />
@@ -49,7 +49,7 @@
             </tbody>
         </table>
 
-        <h4 class="mt-4">Total Amount: <strong>@Model.TotalAmount.ToString("C")</strong></h4>
+        <h4 class="mt-4">Total Amount: <strong>@Model.TotalAmount  $</strong></h4>
 
         <form asp-action="Checkout" method="post" class="mt-4">
             <button type="submit" class="btn btn-success">Complete Purchase</button>

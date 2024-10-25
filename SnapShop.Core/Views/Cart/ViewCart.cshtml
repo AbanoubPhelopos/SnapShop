@@ -54,7 +54,7 @@
                         </button>
                     </form>
                 </td>
-                <td>@item.Product.Price.ToString("C")</td>
+                <td>@item.Product.Price  $</td>
                 <td>
                     <form asp-action="RemoveFromCart" method="post" class="d-inline">
                         <input type="hidden" name="cartItemId" value="@item.CartItemId" />
