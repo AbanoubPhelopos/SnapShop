@@ -124,7 +124,7 @@
               "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Cart\\GetAllOrders.cshtml",
               "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\GetAllOrders.cshtml",
               "RelativeToolTip": "SnapShop.Core\\Views\\Cart\\GetAllOrders.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAADIAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAADAAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-25T04:42:45.274Z",
               "EditorCaption": ""
@@ -173,9 +173,10 @@
               "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Cart\\OrderDetails.cshtml",
               "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\OrderDetails.cshtml",
               "RelativeToolTip": "SnapShop.Core\\Views\\Cart\\OrderDetails.cshtml",
-              "ViewState": "AgIAACMAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAAAUAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-25T03:20:05.003Z"
+              "WhenOpened": "2024-10-25T03:20:05.003Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
