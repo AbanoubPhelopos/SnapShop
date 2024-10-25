@@ -23,6 +23,18 @@ namespace SnapShop.Core.Controllers
             _categoryRepository = categoryRepository;
             _orderRepository = orderRepository;
         }
+        public IActionResult OrderDetails(int id)
+        {
+            var order = _orderRepository.GetOrderWithItems(id);
+            if (order == null)
+            {
+                TempData["ErrorMessage"] = "Order not found.";
+                return RedirectToAction("GetAllOrders");
+            }
+
+            return View(order); // This will return the order details view
+        }
+
         public IActionResult GetAllOrders()
         {
             var orderItems = _orderRepository.GetAllOrders();
@@ -183,18 +195,28 @@ namespace SnapShop.Core.Controllers
 		{
 			var cartItems = _cartRepository.GetCartItems(); // Fetch cart items for confirmation
 			var total = cartItems.Sum(item => item.TotalPrice);
+            var orderItems = cartItems.Select(cartItem => new OrderItem
+            {
+                ProductId = cartItem.Product.Id,
+                Product = cartItem.Product,
+                ProductName = cartItem.Product.Name,
+                Quantity = cartItem.Quantity,
+                Price = cartItem.Price,
+                TotalPrice = cartItem.TotalPrice,
+                Image = cartItem.Product.Image
+            }).ToList();
 
-			// Create a new order
-			var newOrder = new Order
-			{
-				OrderDate = DateTime.UtcNow,
-				TotalAmount = total,
-				OrderItems = cartItems
-			};
-			_orderRepository.AddOrder(newOrder); // Persist the new order
-
-			// Create CheckoutViewModel for confirmation view
-			var confirmationModel = new CheckoutViewModel
+            // Create a new order
+            var newOrder = new Order
+            {
+                OrderDate = DateTime.UtcNow,
+                TotalAmount = total,
+                OrderItems = orderItems
+            };
+            _orderRepository.AddOrder(newOrder); // Persist the new order
+         
+            // Create CheckoutViewModel for confirmation view
+            var confirmationModel = new CheckoutViewModel
 			{
 				CartItems = cartItems,
 				TotalAmount = total,
@@ -204,6 +226,7 @@ namespace SnapShop.Core.Controllers
             {
                 item.Product.Quantity -= item.Quantity;
             }
+            
 			// Clear the cart
 			_cartRepository.ClearCart();
 

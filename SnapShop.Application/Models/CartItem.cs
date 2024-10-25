@@ -18,9 +18,7 @@ namespace SnapShop.Application.Models
         public decimal Price => Product.Price;  // Derived from the Product
         public decimal TotalPrice => Quantity * Price;
         public Product Product { get; set; }  // Reference to the Product object
-        [ForeignKey("Order")]
-        public int? OrderId { get; set; }  // This represents the foreign key
-        public Order ?Order { get; set; }  // Navigation property to the Order
+        
     }
 
 }
