@@ -1,62 +1,73 @@
-﻿@model Order
+﻿@model Order 
 
-<h2 class="mt-4">Order Details - @Model.OrderId</h2>
+<!-- Page Title -->
+<h2 class="mt-4 text-center text-uppercase">Order Details - @Model.OrderId</h2>
 
-<div class="card mb-4">
+<!-- Order Summary Card -->
+<div class="card mb-5 shadow-lg">
+    <div class="card-header bg-info text-white text-uppercase">
+        <h4 class="mb-0">Order Summary</h4>
+    </div>
     <div class="card-body">
-        <h4 class="card-title">Order Summary</h4>
-        <p class="card-text">
+        <p class="card-text lead">
             <strong>Order Date:</strong> @Model.OrderDate.ToString("f")<br />
-            <strong>Total Amount:</strong> @Model.TotalAmount.ToString("C")
+            <strong>Total Amount:</strong> <span class="text-success">@Model.TotalAmount.ToString("C")</span>
         </p>
     </div>
 </div>
 
-<h4>Items in this Order</h4>
+<!-- Items Table -->
+<h4 class="text-uppercase">Items in this Order</h4>
 <div class="table-responsive">
-    <table class="table table-bordered table-hover" id="orderTable">
-        <thead class="table-light">
+    <table class="table table-striped table-hover table-bordered" id="orderTable">
+        <thead class="thead-dark">
             <tr>
-                <th>Product Image</th>
+                <th class="text-center">Product Image</th>
                 <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Unit Price</th>
-                <th>Total Price</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Unit Price</th>
+                <th class="text-center">Total Price</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.OrderItems)
             {
                 <tr>
-                    <td>
+                    <td class="text-center">
                         <a asp-controller="Cashier" asp-action="GetProduct" asp-route-id="@item.ProductId">
-                        <img src="/Images/Products/@item.Image"
-                             class="img-fluid"
-                             alt="@item.Product.Name"
-                             style="height: 100px; object-fit: cover;"
-                             data-toggle="tooltip"
-                             title="View details for @item.Product.Name">
+                            <img src="/Images/Products/@item.Image" 
+                                 class="img-thumbnail"
+                                 alt="@item.Product.Name"
+                                 style="width: 100px; height: 100px; object-fit: cover;"
+                                 data-toggle="tooltip"
+                                 title="View details for @item.Product.Name">
                         </a>
                     </td>
                     <td>@item.Product.Name</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.Product.Price.ToString("C")</td>
-                    <td>@item.TotalPrice.ToString("C")</td>
+                    <td class="text-center">@item.Quantity</td>
+                    <td class="text-center">@item.Product.Price.ToString("C")</td>
+                    <td class="text-center font-weight-bold text-success">@item.TotalPrice.ToString("C")</td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
 
-<div class="d-flex justify-content-between mt-3">
-    <a asp-action="GetAllOrders" class="btn btn-secondary">Back to Orders List</a>
+<!-- Navigation Buttons -->
+<div class="d-flex justify-content-between mt-4">
+    <a asp-action="GetAllOrders" class="btn btn-secondary btn-lg">
+        <i class="fas fa-arrow-left"></i> Back to Orders List
+    </a>
+    <a asp-controller="Cashier" asp-action="Index" class="btn btn-primary btn-lg">
+        <i class="fas fa-home"></i> Go to Homepage
+    </a>
 </div>
 
-@section Scripts{
+@section Scripts {
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip({
-                html: true // Enable HTML content in the tooltip
+                html: true
             });
         });
     </script>

@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\source\\repos\\SnapShop\\SnapShop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\cart\\orderdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\cart\\orderdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\cart\\getallorders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\cart\\getallorders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\cart\\orderdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|solutionrelative:snapshop.core\\views\\cart\\orderdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{97EA2654-38E1-4233-8C60-111C7E8BEFFA}|SnapShop.Core\\SnapShop.Core.csproj|d:\\source\\repos\\snapshop\\snapshop\\snapshop.core\\views\\cashier\\getproduct.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -106,17 +106,25 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "GetAllOrders.cshtml",
               "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\GetAllOrders.cshtml",
               "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Cart\\GetAllOrders.cshtml",
               "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\GetAllOrders.cshtml",
               "RelativeToolTip": "SnapShop.Core\\Views\\Cart\\GetAllOrders.cshtml",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAADIAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-25T04:42:45.274Z",
               "EditorCaption": ""
@@ -129,10 +137,9 @@
               "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Cashier\\GetProduct.cshtml",
               "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cashier\\GetProduct.cshtml",
               "RelativeToolTip": "SnapShop.Core\\Views\\Cashier\\GetProduct.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-25T04:14:46.818Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T04:14:46.818Z"
             },
             {
               "$type": "Document",
@@ -144,8 +151,7 @@
               "RelativeToolTip": "SnapShop.Application\\Migrations\\20241025041117_CreateOrderItems4.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T04:11:19.058Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T04:11:19.058Z"
             },
             {
               "$type": "Document",
@@ -157,21 +163,19 @@
               "RelativeToolTip": "SnapShop.Core\\Views\\Cart\\Confirmation.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-25T03:33:42.613Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T03:33:42.613Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "OrderDetails.cshtml",
               "DocumentMoniker": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\OrderDetails.cshtml",
               "RelativeDocumentMoniker": "SnapShop.Core\\Views\\Cart\\OrderDetails.cshtml",
               "ToolTip": "D:\\source\\repos\\SnapShop\\SnapShop\\SnapShop.Core\\Views\\Cart\\OrderDetails.cshtml",
               "RelativeToolTip": "SnapShop.Core\\Views\\Cart\\OrderDetails.cshtml",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAAADcAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-25T03:20:05.003Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T03:20:05.003Z"
             },
             {
               "$type": "Document",
@@ -183,8 +187,7 @@
               "RelativeToolTip": "SnapShop.Core\\Repositories\\IOrderRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T03:16:02.392Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T03:16:02.392Z"
             },
             {
               "$type": "Document",
@@ -196,8 +199,7 @@
               "RelativeToolTip": "SnapShop.Application\\Models\\Order.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T21:00:42.996Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T21:00:42.996Z"
             },
             {
               "$type": "Document",
@@ -209,12 +211,7 @@
               "RelativeToolTip": "SnapShop.Application\\Models\\OrderItem.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAswBMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T20:49:41.323Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "WhenOpened": "2024-10-24T20:49:41.323Z"
             },
             {
               "$type": "Document",
@@ -226,8 +223,7 @@
               "RelativeToolTip": "SnapShop.Core\\Views\\Product\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-20T21:19:56.933Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-20T21:19:56.933Z"
             },
             {
               "$type": "Document",
@@ -239,8 +235,7 @@
               "RelativeToolTip": "SnapShop.Application\\Models\\CartItem.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAwwAoAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T20:28:19.668Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-23T20:28:19.668Z"
             },
             {
               "$type": "Document",
@@ -252,8 +247,7 @@
               "RelativeToolTip": "SnapShop.Core\\Controllers\\CartController.cs",
               "ViewState": "AgIAAMIAAAAAAAAAAAAAAM0AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T21:19:56.93Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-20T21:19:56.93Z"
             },
             {
               "$type": "Document",
@@ -265,8 +259,7 @@
               "RelativeToolTip": "SnapShop.Core\\Repositories\\OrderRepository.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAABUAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T20:48:26.428Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T20:48:26.428Z"
             },
             {
               "$type": "Document",
@@ -278,8 +271,7 @@
               "RelativeToolTip": "SnapShop.Core\\Views\\Manager\\GetEmployees.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-20T21:19:56.943Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-20T21:19:56.943Z"
             },
             {
               "$type": "Document",
@@ -291,8 +283,7 @@
               "RelativeToolTip": "SnapShop.Core\\Controllers\\ManagerController.cs",
               "ViewState": "AgIAAJUAAAAAAAAAAAAAAKEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T21:19:56.946Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-20T21:19:56.946Z"
             },
             {
               "$type": "Document",
@@ -329,10 +320,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-23T12:58:44.566Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
