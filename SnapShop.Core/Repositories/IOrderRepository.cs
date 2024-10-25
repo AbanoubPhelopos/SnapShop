@@ -7,5 +7,6 @@
         List<Order> GetAllOrders(); // Retrieve all orders
         void UpdateOrder(Order order); // Update an existing order
         void DeleteOrder(int orderId); // Delete an order by ID
+        Order GetOrderWithItems(int orderId);
     }
 }

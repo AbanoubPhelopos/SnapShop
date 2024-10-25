@@ -24,6 +24,6 @@ namespace SnapShop.Application.Models
         public decimal TotalAmount { get; set; }
 
         // Relationship to cart items
-        public List<CartItem> OrderItems { get; set; } = new List<CartItem>(); // Initialize the list to avoid null reference issues
+        public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>(); // Initialize the list to avoid null reference issues
     }
 }

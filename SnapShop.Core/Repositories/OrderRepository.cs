@@ -1,4 +1,5 @@
-﻿using SnapShop.Application.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SnapShop.Application.Data;
 
 namespace SnapShop.Core.Repositories
 {
@@ -18,10 +19,18 @@ namespace SnapShop.Core.Repositories
             _context.Orders.Add(order); // Add the order to the context
             _context.SaveChanges(); // Save changes to the database
         }
+        public Order GetOrderWithItems(int orderId)
+        {
+            var order = _context.Orders
+                                .Include(o => o.OrderItems)
+                                .ThenInclude(oi => oi.Product) // Assuming you have a Product navigation property
+                                .FirstOrDefault(o => o.OrderId == orderId);
 
+            return order;
+        }
         public Order GetOrderById(int orderId)
         {
-            return _context.Orders.Find(orderId); // Retrieve the order by ID
+            return _context.Orders.Include(o => o.OrderItems).FirstOrDefault(o => o.OrderId == orderId);
         }
 
         public List<Order> GetAllOrders()

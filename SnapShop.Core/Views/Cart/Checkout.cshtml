@@ -12,7 +12,8 @@
                 <tr>
                     <th>Product Name</th>
                     <th>Quantity</th>
-                    <th>Price</th>
+                    <th>Unit Price</th>
+                    <th>Total Price</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,7 @@
                             <td>@item.Product.Name</td>
                             <td>@item.Quantity</td>
                             <td>@item.Product.Price.ToString("C")</td>
+                            <td>@item.TotalPrice.ToString("C")</td>
                         </tr>
                         <!-- Hidden fields to submit cart items -->
                         <input type="hidden" name="CartItems[@Model.CartItems.IndexOf(item)].CartItemId" value="@item.CartItemId" />
