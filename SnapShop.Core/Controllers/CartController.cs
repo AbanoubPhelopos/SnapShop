@@ -69,48 +69,59 @@ namespace SnapShop.Core.Controllers
 
             return Json(productList);  // Return products as JSON for the dropdown
         }
-        // Add item to cart
         [HttpPost]
         public IActionResult AddToCart(int productId, int quantity)
         {
-            if (quantity <= 0)
-            {
-                // Quantity is invalid
-                TempData["ErrorMessage"] = "Quantity must be a positive number.";
-                return RedirectToAction("GetProduct", "Cashier", new { id = productId });
-            }
+	        if (quantity <= 0)
+	        {
+		        // Quantity is invalid
+		        return HandleResponse("Quantity must be a positive number.", success: false,productId);
+	        }
 
-            var product = _productRepository.GetById(productId);
+	        var product = _productRepository.GetById(productId);
 
-            if (product == null)
-            {
-                // Product does not exist
-                TempData["ErrorMessage"] = "Product not found.";
-                return RedirectToAction("GetProduct", "Cashier", new { id = productId });
-            }
+	        if (product == null)
+	        {
+		        // Product does not exist
+		        return HandleResponse("Product not found.", success: false,productId);
+	        }
 
-            if (product.Quantity < quantity)
-            {
-                // Not enough stock
-                TempData["ErrorMessage"] = "Insufficient stock available.";
-                return RedirectToAction("GetProduct", "Cashier", new { id = productId });
-            }
+	        if (product.Quantity < quantity)
+	        {
+		        // Not enough stock
+		        return HandleResponse("Insufficient stock available.", success: false,productId);
+	        }
 
-            // Check if the product is already in the cart
-            var existingCartItem = _cartRepository.GetCartItem(productId); // Assume this method exists in your repository
+	        // Check if the product is already in the cart
+	        var existingCartItem = _cartRepository.GetCartItem(productId);
+	        if (existingCartItem != null)
+	        {
+		        // Product is already in the cart
+		        return HandleResponse("Product is already in the cart.", success: false,productId);
+	        }
 
-            if (existingCartItem != null)
-            {
-                // Product is already in the cart
-                TempData["ErrorMessage"] = "Product is already in the cart.";
-                return RedirectToAction("GetProduct", "Cashier", new { id = productId });
-            }
+	        // Add the product to the cart if it is not already there
+	        _cartRepository.AddToCart(productId, quantity);
 
-            // Add the product to the cart if it is not already there
-            _cartRepository.AddToCart(productId, quantity);
-            TempData["SuccessMessage"] = "Product added to cart successfully.";
-            return RedirectToAction("GetProduct", "Cashier", new { id = productId });
+	        // Return success response
+	        return HandleResponse("Product added to cart successfully!", success: true,productId);
         }
+
+// Helper method to handle responses based on request type
+        private IActionResult HandleResponse(string message, bool success,int productId)
+        {
+	        if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+	        {
+		        // Return JSON for AJAX requests
+		        return Json(new { success, message });
+	        }
+
+	        // Return with TempData and redirect for regular requests
+	        TempData[success ? "SuccessMessage" : "ErrorMessage"] = message;
+	        return RedirectToAction("GetProduct", "Cashier", new { id = productId });
+        }
+
+        
 
         // Update item quantity in cart
         [HttpPost]

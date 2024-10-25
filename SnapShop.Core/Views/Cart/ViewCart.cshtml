@@ -1,27 +1,60 @@
 ﻿@model List<CartItem>
 @{
-    SelectList CategoryOptions = new SelectList(ViewBag.Categories, "Id", "Name");
+SelectList CategoryOptions = new SelectList(ViewBag.Categories, "Id", "Name");
 }
 
-<!-- Display error or success messages -->
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["ErrorMessage"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
+<!-- Display error or success messages as SweetAlert -->
+@section Scripts {
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["SuccessMessage"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Success Message
+        @if (TempData["SuccessMessage"] != null)
+        {
+        <text>
+        Swal.fire({
+            icon: "success",
+            title: "@TempData["SuccessMessage"]",
+            showConfirmButton: false,
+            position: 'top-end', // Position set to top right
+            timer: 1500
+        });
+        </text>
+        }
+
+        // Error Message
+        else if (TempData["ErrorMessage"] != null)
+        {
+        <text>
+        Swal.fire({
+            icon: "error",
+            title: "@TempData["ErrorMessage"]",
+            showConfirmButton: false,
+            position: 'top-end', // Position set to top right
+            timer: 1500
+        });
+        </text>
+        }
+    });
+
+    // Function to confirm removal of cart item
+    function confirmRemove(form) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, remove it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit(); // Submit the form if confirmed
+            }
+        });
+    }
+</script>
 }
 
 <div class="card-header bg-secondary bg-gradient ml-0 py-4">
@@ -34,40 +67,40 @@
 
 <table class="table table-striped table-bordered">
     <thead class="thead-dark">
-        <tr>
-            <th>Product Name</th>
-            <th>Quantity</th>
-            <th>Price</th>
-        </tr>
+    <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Product.Name</td>
-                <td>
-                    <form asp-action="UpdateCartItem" method="post" class="d-inline-flex">
-                        <input type="hidden" name="cartItemId" value="@item.CartItemId" />
-                        <input type="number" name="quantity" class="form-control form-control-sm mx-2" value="@item.Quantity" min="1" style="width: 80px;" />
-                        <button type="submit" class="btn btn-sm btn-outline-primary" title="Update Quantity">
-                            <i class="fas fa-sync-alt"></i> Update
-                        </button>
-                    </form>
-                </td>
-                <td>@item.Product.Price  $</td>
-                <td>
-                    <form asp-action="RemoveFromCart" method="post" class="d-inline">
-                        <input type="hidden" name="cartItemId" value="@item.CartItemId" />
-                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Remove Item">
-                            <i class="fas fa-trash-alt"></i> Remove
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        }
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.Product.Name</td>
+        <td>
+            <form asp-action="UpdateCartItem" method="post" class="d-inline-flex">
+                <input type="hidden" name="cartItemId" value="@item.CartItemId" />
+                <input type="number" name="quantity" class="form-control form-control-sm mx-2" value="@item.Quantity" min="1" style="width: 80px;" />
+                <button type="submit" class="btn btn-sm btn-outline-primary" title="Update Quantity">
+                    <i class="fas fa-sync-alt"></i> Update
+                </button>
+            </form>
+        </td>
+        <td>@item.Product.Price $</td>
+        <td>
+            <form asp-action="RemoveFromCart" method="post" class="d-inline" onsubmit="event.preventDefault(); confirmRemove(this);">
+                <input type="hidden" name="cartItemId" value="@item.CartItemId" />
+                <button type="submit" class="btn btn-sm btn-outline-danger" title="Remove Item">
+                    <i class="fas fa-trash-alt"></i> Remove
+                </button>
+            </form>
+        </td>
+    </tr>
+    }
     </tbody>
 </table>
-
 
 <!-- Checkout Button -->
 <div class="text-right mt-4">
