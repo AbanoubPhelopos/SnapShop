@@ -1,4 +1,5 @@
-﻿@model Order
+﻿@using SnapShop.Utility
+@model Order
 
 <!-- Page Title -->
 <h2 class="mt-4 text-center text-uppercase">Order Details - @Model.OrderId</h2>
@@ -56,16 +57,19 @@
         </tbody>
     </table>
 </div>
+@if (User.IsInRole(StaticDetails.RoleUserCashier))
+{
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-between mt-4">
+        <a asp-action="GetAllOrders" class="btn btn-outline-secondary btn-lg">
+            <i class="fas fa-arrow-left"></i> Back to Orders List
+        </a>
+        <a asp-controller="Cashier" asp-action="Index" class="btn btn-outline-primary btn-lg">
+            <i class="fas fa-home"></i> Go to Homepage
+        </a>
+    </div>
+}
 
-<!-- Navigation Buttons -->
-<div class="d-flex justify-content-between mt-4">
-    <a asp-action="GetAllOrders" class="btn btn-outline-secondary btn-lg">
-        <i class="fas fa-arrow-left"></i> Back to Orders List
-    </a>
-    <a asp-controller="Cashier" asp-action="Index" class="btn btn-outline-primary btn-lg">
-        <i class="fas fa-home"></i> Go to Homepage
-    </a>
-</div>
 
 @section Scripts {
 <script>
