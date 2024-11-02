@@ -30,10 +30,10 @@
 
 The project follows clean architecture principles with distinct layers:
 
-- **SnapShop.Web**: Contains the main project structure, controllers, and views.
-- **SnapShop.Data**: Manages database interactions, models, and repositories.
-- **SnapShop.Services**: Business logic and services.
-- **SnapShop.Contracts**: Contains all DTOs and data models shared across layers.
+- **SnapShop.Core**: Contains the main project structure, controllers, views and repositories.
+- **SnapShop.Application**: Manages database interactions, models .
+- **SnapShop.Utility**: Contain the static info of the Project.
+
 
 ## 🤝 Connect
 
