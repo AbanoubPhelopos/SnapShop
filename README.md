@@ -1,25 +1,40 @@
-# SnapShop Supermarket Web App
+# SnapShop Supermarket Web App 🛒
 
-Welcome to SnapShop! This is a full-featured supermarket management application developed with ASP.NET Core MVC. SnapShop is designed to provide streamlined operations for supermarkets, including role-based functionalities for managers, storekeepers, and cashiers. The project was created as a graduation project for a training course in collaboration with a dedicated team.
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/abanoub-saweris/)
 
-[LinkedIn Post for SnapShop Project](https://www.linkedin.com/posts/abanoub-saweris_project-launch-snapshop-supermarket-activity-7258458344288346112-t7J1?utm_source=share&utm_medium=member_desktop)
+"SnapShop" is a full-featured supermarket management application built with **ASP.NET Core MVC**. Developed as a graduation project in collaboration with a dedicated team, this application streamlines supermarket operations with role-based functionality for managers, storekeepers, and cashiers. It includes secure payment processing, inventory management, and employee management.
 
+## 🛠️ Technologies Used
 
-## Features
+- **ASP.NET Core MVC**
+- **Repository Pattern** and **Unit of Work** (for clean architecture)
+- **Stripe API** (for secure payment processing)
+- **Microsoft Identity** (for role-based access control)
+- **Azure** (for cloud deployment)
 
-- **Role-Based Authentication & Authorization**: Separate roles for managers, storekeepers, and cashiers, each with specific access permissions.
-- **Secure Payment Integration**: Stripe API is integrated to handle payment processing safely.
-- **Shopping Cart and Order Confirmation**: Cashiers can add items to the cart, process orders, and confirm purchases.
-- **Manager Functions**:
-  - **Employee Management**: Managers can hire and terminate employees.
-  - **Sales and Purchase Statistics**: Real-time data insights for effective decision-making.
-- **Azure Deployment**: Hosted on Azure for live access and scalability.
+## 🔒 Features
 
-## Technologies Used
+- **Role-Based Authentication & Authorization**: Access control for managers, storekeepers, and cashiers.
+- **Secure Payment Integration**: Stripe API for seamless payment processing.
+- **Shopping Cart and Order Confirmation**: Simplified cashier workflows with shopping cart functionality.
+- **Employee Management**: Managers can hire and terminate employees.
+- **Sales & Purchase Statistics**: Real-time data insights for managers to make informed decisions.
+- **Cloud Deployment on Azure**: Accessible anytime, anywhere.
 
-- **ASP.NET Core MVC** for application structure and view rendering
-- **Repository Pattern** and **Unit of Work** for clean, maintainable code
-- **Stripe API** for secure payment processing
-- **Microsoft Identity** for role-based access control
-- **Database** PostgreSQL
-- **Azure** for cloud deployment
+## 🚀 Future Improvements
+
+- **Inventory Forecasting**: Planning to add forecasting tools to predict future inventory needs.
+- **Customer Accounts**: Considering the addition of a customer role for online orders.
+
+## 📂 Project Structure
+
+The project follows clean architecture principles with distinct layers:
+
+- **SnapShop.Web**: Contains the main project structure, controllers, and views.
+- **SnapShop.Data**: Manages database interactions, models, and repositories.
+- **SnapShop.Services**: Business logic and services.
+- **SnapShop.Contracts**: Contains all DTOs and data models shared across layers.
+
+## 🤝 Connect
+
+Feel free to check out my [LinkedIn post](https://www.linkedin.com/posts/abanoub-saweris_project-launch-snapshop-supermarket-activity-7258458344288346112-t7J1?utm_source=share&utm_medium=member_desktop) about the project or connect with me on [LinkedIn](https://www.linkedin.com/in/abanoub-saweris/) for any queries.
