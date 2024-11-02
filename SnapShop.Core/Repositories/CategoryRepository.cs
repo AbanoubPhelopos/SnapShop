@@ -59,26 +59,34 @@ namespace SnapShop.Core.Repositories
         public async Task InsertCategoryAsync(Category category, IFormFile? formFile)
         {
             string wwwRootPath = webHostEnvironment.WebRootPath;
+            string categoryImagePath = Path.Combine(wwwRootPath, "Images/Categories");
+
+            // Ensure directory exists
+            if (!Directory.Exists(categoryImagePath))
+            {
+                Directory.CreateDirectory(categoryImagePath);
+            }
 
             if (formFile != null)
             {
-                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(formFile.FileName);
-                string categoryImagePath = Path.Combine(wwwRootPath, @"Images\Categories");
+                string fileName = Guid.NewGuid() + Path.GetExtension(formFile.FileName);
+                string filePath = Path.Combine(categoryImagePath, fileName);
 
                 // Save the new image
-                using (var fileStream = new FileStream(Path.Combine(categoryImagePath, fileName), FileMode.Create))
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     await formFile.CopyToAsync(fileStream);
                 }
 
                 // Set image URL in category object
-                category.Image = @"Images\Categories\" + fileName;
+                category.Image = $"Images/Categories/{fileName}";
             }
 
             // Add category to the database
             await context.Categories.AddAsync(category);
             await context.SaveChangesAsync();
         }
+
 
         // Delete category and remove the associated image
         public async Task DeleteCategoryAsync(int categoryId)
